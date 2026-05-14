@@ -17,8 +17,10 @@ export async function GET(req) {
   }
 
   const items = await Item.find()
+    .select("-embedding")
     .populate("user", "name email phone")
-    .sort({ createdAt: -1 });
+    .sort({ createdAt: -1 })
+    .lean();
 
   return NextResponse.json(items);
 }

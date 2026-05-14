@@ -137,7 +137,7 @@ export default function ProfilePage() {
       
       toast.success("Profile updated successfully!", {
         style: { 
-          background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)", 
+          background: "linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)", 
           color: "white" 
         },
         duration: 3000
@@ -181,7 +181,7 @@ export default function ProfilePage() {
         toast.dismiss(uploadToastId);
         toast.success("Profile picture updated!", {
           style: { 
-            background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)", 
+            background: "linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)", 
             color: "white" 
           },
           duration: 3000
@@ -257,12 +257,12 @@ export default function ProfilePage() {
         <div className="text-center py-5">
           <div
             className="spinner-border"
-            style={{ width: "3rem", height: "3rem", color: "#667eea" }}
+            style={{ width: "3rem", height: "3rem", color: "#2563eb" }}
             role="status"
           >
             <span className="visually-hidden">Loading profile...</span>
           </div>
-          <p className="mt-3" style={{ color: "#764ba2" }}>
+          <p className="mt-3" style={{ color: "#0f766e" }}>
             Loading your profile...
           </p>
         </div>
@@ -274,7 +274,7 @@ export default function ProfilePage() {
     <>
       <style jsx global>{`
         .profile-gradient-bg {
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
           border-radius: 20px;
         }
 
@@ -298,7 +298,7 @@ export default function ProfilePage() {
         .avatar-overlay {
           position: absolute;
           inset: 0;
-          background: rgba(102, 126, 234, 0.7);
+          background: rgba(37, 99, 235, 0.7);
           display: flex;
           align-items: center;
           justify-content: center;
@@ -314,18 +314,18 @@ export default function ProfilePage() {
         .activity-card {
           background: white;
           border-radius: 12px;
-          border: 1px solid rgba(102, 126, 234, 0.1);
+          border: 1px solid rgba(37, 99, 235, 0.1);
           transition: all 0.3s ease;
         }
 
         .activity-card:hover {
           transform: translateX(5px);
-          border-color: rgba(102, 126, 234, 0.3);
-          box-shadow: 0 5px 20px rgba(102, 126, 234, 0.1);
+          border-color: rgba(37, 99, 235, 0.3);
+          box-shadow: 0 5px 20px rgba(37, 99, 235, 0.1);
         }
 
         .gradient-text {
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -334,12 +334,12 @@ export default function ProfilePage() {
         .glass-effect {
           background: rgba(255, 255, 255, 0.9);
           backdrop-filter: blur(10px);
-          border: 1px solid rgba(102, 126, 234, 0.1);
+          border: 1px solid rgba(37, 99, 235, 0.1);
           border-radius: 16px;
         }
 
         .profile-input {
-          border: 1px solid rgba(102, 126, 234, 0.2);
+          border: 1px solid rgba(37, 99, 235, 0.2);
           border-radius: 10px;
           padding: 12px 16px;
           font-size: 14px;
@@ -349,12 +349,12 @@ export default function ProfilePage() {
 
         .profile-input:focus {
           outline: none;
-          border-color: #667eea;
-          box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+          border-color: #2563eb;
+          box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
         .btn-gradient {
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
           color: white;
           border: none;
           border-radius: 10px;
@@ -366,12 +366,12 @@ export default function ProfilePage() {
 
         .btn-gradient:hover:not(:disabled) {
           transform: translateY(-2px);
-          box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+          box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
         }
 
         .btn-outline-gradient {
           background: transparent;
-          color: #667eea;
+          color: #2563eb;
           border: 2px solid transparent;
           border-radius: 50px;
           padding: 12px 24px;
@@ -380,13 +380,13 @@ export default function ProfilePage() {
           transition: all 0.2s ease;
           background-image: 
             linear-gradient(white, white),
-            linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
           background-origin: border-box;
           background-clip: padding-box, border-box;
         }
 
         .btn-outline-gradient:hover {
-          background-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          background-image: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
           color: white;
         }
 
@@ -586,7 +586,7 @@ export default function ProfilePage() {
       className="w-100 h-100 d-flex align-items-center justify-content-center"
       style={{
         background: "linear-gradient(135deg, #ffffff 0%, #e0e7ff 100%)",
-        color: "#667eea",
+        color: "#2563eb",
         fontSize: "3rem",
         fontWeight: "bold"
       }}
@@ -727,7 +727,7 @@ export default function ProfilePage() {
               
               <div className="mb-4">
                 <div className="d-flex align-items-center mb-3">
-                  <FaPhone className="me-3 flex-shrink-0" style={{ color: "#667eea" }} />
+                  <FaPhone className="me-3 flex-shrink-0" style={{ color: "#2563eb" }} />
                   <div className="w-100">
                     <small className="text-muted d-block">Phone</small>
                     {editMode ? (
@@ -739,7 +739,7 @@ export default function ProfilePage() {
                         placeholder="Enter phone number"
                       />
                     ) : (
-                      <span className="d-block mt-1" style={{ color: "#764ba2", wordBreak: "break-word" }}>
+                      <span className="d-block mt-1" style={{ color: "#0f766e", wordBreak: "break-word" }}>
                         {userData.phone}
                       </span>
                     )}
@@ -747,7 +747,7 @@ export default function ProfilePage() {
                 </div>
 
                 <div className="d-flex align-items-center mb-3">
-                  <FaMapMarkerAlt className="me-3 flex-shrink-0" style={{ color: "#667eea" }} />
+                  <FaMapMarkerAlt className="me-3 flex-shrink-0" style={{ color: "#2563eb" }} />
                   <div className="w-100">
                     <small className="text-muted d-block">Location</small>
                     {editMode ? (
@@ -759,7 +759,7 @@ export default function ProfilePage() {
                         placeholder="Enter your location"
                       />
                     ) : (
-                      <span className="d-block mt-1" style={{ color: "#764ba2", wordBreak: "break-word" }}>
+                      <span className="d-block mt-1" style={{ color: "#0f766e", wordBreak: "break-word" }}>
                         {userData.location}
                       </span>
                     )}
@@ -767,22 +767,22 @@ export default function ProfilePage() {
                 </div>
 
                 <div className="d-flex align-items-center mb-3">
-                  <FaCalendarAlt className="me-3 flex-shrink-0" style={{ color: "#667eea" }} />
+                  <FaCalendarAlt className="me-3 flex-shrink-0" style={{ color: "#2563eb" }} />
                   <div>
                     <small className="text-muted d-block">Member Since</small>
-                    <span className="d-block mt-1" style={{ color: "#764ba2" }}>
+                    <span className="d-block mt-1" style={{ color: "#0f766e" }}>
                       {formatDate(userData.joinDate)}
                     </span>
                   </div>
                 </div>
 
                 <div className="d-flex align-items-center">
-                  <FaShieldAlt className="me-3 flex-shrink-0" style={{ color: "#667eea" }} />
+                  <FaShieldAlt className="me-3 flex-shrink-0" style={{ color: "#2563eb" }} />
                   <div>
                     <small className="text-muted d-block">Account Status</small>
                     <span className="badge mt-1" style={{ 
-                      background: "rgba(102, 126, 234, 0.1)", 
-                      color: "#667eea",
+                      background: "rgba(37, 99, 235, 0.1)", 
+                      color: "#2563eb",
                       fontSize: "0.85em"
                     }}>
                       Active
@@ -845,8 +845,8 @@ export default function ProfilePage() {
                   <button
                     className="btn btn-sm"
                     style={{ 
-                      background: "rgba(102, 126, 234, 0.1)", 
-                      color: "#667eea",
+                      background: "rgba(37, 99, 235, 0.1)", 
+                      color: "#2563eb",
                       fontSize: "0.85em"
                     }}
                     onClick={fetchUserProfile}
@@ -868,7 +868,7 @@ export default function ProfilePage() {
                               width: "36px",
                               height: "36px",
                               background: activity.type === "lost" 
-                                ? "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+                                ? "linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)"
                                 : activity.type === "found"
                                 ? "linear-gradient(135deg, #10b981 0%, #059669 100%)"
                                 : activity.type === "joined"
@@ -885,19 +885,19 @@ export default function ProfilePage() {
                         </div>
                         <div className="flex-grow-1 ms-2 ms-md-3">
                           <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center mb-1">
-                            <h6 className="fw-bold mb-0" style={{ color: "#667eea", fontSize: "0.95rem" }}>
+                            <h6 className="fw-bold mb-0" style={{ color: "#2563eb", fontSize: "0.95rem" }}>
                               {activity.title}
                             </h6>
                             <span className="badge mt-1 mt-md-0" style={{
                               background: activity.type === "lost" 
-                                ? "rgba(102, 126, 234, 0.1)"
+                                ? "rgba(37, 99, 235, 0.1)"
                                 : activity.type === "found"
                                 ? "rgba(16, 185, 129, 0.1)"
                                 : activity.type === "joined"
                                 ? "rgba(245, 158, 11, 0.1)"
                                 : "rgba(107, 114, 128, 0.1)",
                               color: activity.type === "lost" 
-                                ? "#667eea"
+                                ? "#2563eb"
                                 : activity.type === "found"
                                 ? "#10b981"
                                 : activity.type === "joined"
@@ -908,7 +908,7 @@ export default function ProfilePage() {
                               {activity.type?.toUpperCase() || "ACTIVITY"}
                             </span>
                           </div>
-                          <p className="small mb-1 mb-md-2" style={{ color: "#764ba2", fontSize: "0.85rem" }}>
+                          <p className="small mb-1 mb-md-2" style={{ color: "#0f766e", fontSize: "0.85rem" }}>
                             {activity.description}
                           </p>
                           <div className="d-flex flex-column flex-md-row justify-content-between align-items-start align-items-md-center">
@@ -930,9 +930,9 @@ export default function ProfilePage() {
                 </div>
               ) : (
                 <div className="text-center py-4 py-md-5">
-                  <FaHistory size={40} style={{ color: "#667eea", opacity: 0.5 }} className="mb-3" />
-                  <h6 className="fw-bold mb-2" style={{ color: "#667eea", fontSize: "1rem" }}>No recent activity</h6>
-                  <p className="small mb-0" style={{ color: "#764ba2" }}>
+                  <FaHistory size={40} style={{ color: "#2563eb", opacity: 0.5 }} className="mb-3" />
+                  <h6 className="fw-bold mb-2" style={{ color: "#2563eb", fontSize: "1rem" }}>No recent activity</h6>
+                  <p className="small mb-0" style={{ color: "#0f766e" }}>
                     Your activity will appear here when you report items
                   </p>
                   <button
@@ -986,7 +986,7 @@ export default function ProfilePage() {
             
             <div className="p-4 text-center logout-confirm-body">
               <FaSignOutAlt size={48} style={{ color: "#ef4444", opacity: 0.7 }} className="mb-3 logout-confirm-icon" />
-              <p className="mb-0" style={{ color: "#764ba2" }}>
+              <p className="mb-0" style={{ color: "#0f766e" }}>
                 Are you sure you want to logout?
               </p>
             </div>
@@ -1014,3 +1014,5 @@ export default function ProfilePage() {
     </>
   );
 }
+
+

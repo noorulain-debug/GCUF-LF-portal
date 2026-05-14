@@ -6,7 +6,7 @@ export function middleware(req) {
   const { pathname } = req.nextUrl;
 
   
-  const protectedRoutes = ["/found", "/lost"];
+  const protectedRoutes = ["/found", "/lost", "/myItems", "/userProfile"];
   const adminRoutes = ["/admin"];
 
   
@@ -35,6 +35,8 @@ export const config = {
   matcher: [
     "/found/:path*",
     "/lost/:path*",
+    "/myItems/:path*",
+    "/userProfile/:path*",
     "/admin/:path*",
   ],
 };

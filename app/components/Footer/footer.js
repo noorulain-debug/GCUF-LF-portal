@@ -15,19 +15,19 @@ export default function Footer() {
       style={{
         background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)',
         borderTop: '3px solid',
-        borderImage: 'linear-gradient(90deg, #667eea, #764ba2, #667eea) 1'
+        borderImage: 'linear-gradient(90deg, #2563eb, #14b8a6, #2563eb) 1'
       }}
     >
       <style jsx>{`
         .social-icon:hover {
           transform: translateY(-3px);
-          box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+          box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+          background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%) !important;
           color: white !important;
           border-color: transparent !important;
         }
         .footer-link:hover {
-          color: #667eea !important;
+          color: #2563eb !important;
           opacity: 1 !important;
           padding-left: 5px;
         }
@@ -53,8 +53,8 @@ export default function Footer() {
               <div
                 className="me-3 rounded-3 p-2 flex-shrink-0"
                 style={{
-                  background: 'linear-gradient(135deg, rgba(102,126,234,0.1) 0%, rgba(118,75,162,0.1) 100%)',
-                  border: '1px solid rgba(102,126,234,0.2)'
+                  background: 'linear-gradient(135deg, rgba(37, 99, 235,0.1) 0%, rgba(20, 184, 166,0.1) 100%)',
+                  border: '1px solid rgba(37, 99, 235,0.2)'
                 }}
               >
                 <img
@@ -67,7 +67,7 @@ export default function Footer() {
                 <h3
                   className="fw-bold mb-0"
                   style={{
-                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    background: 'linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text',
@@ -100,9 +100,9 @@ export default function Footer() {
                     className="d-flex align-items-center justify-content-center rounded-circle social-icon"
                     style={{
                       width: '28px', height: '28px',
-                      background: 'linear-gradient(135deg, rgba(102,126,234,0.2) 0%, rgba(118,75,162,0.2) 100%)',
-                      color: '#667eea',
-                      border: '1px solid rgba(102,126,234,0.3)',
+                      background: 'linear-gradient(135deg, rgba(37, 99, 235,0.2) 0%, rgba(20, 184, 166,0.2) 100%)',
+                      color: '#2563eb',
+                      border: '1px solid rgba(37, 99, 235,0.3)',
                       transition: 'all 0.3s ease'
                     }}
                   >
@@ -115,7 +115,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div className="col-6 col-md-4 col-lg-2 ps-3">
-            <h5 className="fw-bold mb-3" style={{ color: '#667eea', fontSize: '0.9rem' }}>Quick Links</h5>
+            <h5 className="fw-bold mb-3" style={{ color: '#2563eb', fontSize: '0.9rem' }}>Quick Links</h5>
             <ul className="list-unstyled mb-0">
               {[
                 { href: "/",       icon: <FaHome size={13} />,             text: "Home"          },
@@ -129,7 +129,7 @@ export default function Footer() {
                     className="text-light text-decoration-none opacity-75 d-flex align-items-center gap-2 footer-link"
                     style={{ transition: 'all 0.2s ease', fontSize: '0.7rem' }}
                   >
-                    <span style={{ color: '#667eea', flexShrink: 0 }}>{link.icon}</span>
+                    <span style={{ color: '#2563eb', flexShrink: 0 }}>{link.icon}</span>
                     {link.text}
                   </a>
                 </li>
@@ -139,18 +139,18 @@ export default function Footer() {
 
           {/* Contact */}
           <div className="col-6 col-md-4 col-lg-3 ps-0 ">
-            <h5 className="fw-bold mb-3" style={{ color: '#667eea', fontSize: '0.9rem' }}>Contact Us</h5>
+            <h5 className="fw-bold mb-3" style={{ color: '#2563eb', fontSize: '0.9rem' }}>Contact Us</h5>
             <ul className="list-unstyled mb-0">
               <li className="mb-3 d-flex align-items-start gap-2">
-                <FaMapMarkerAlt size={13} style={{ color: '#667eea', marginTop: '3px', flexShrink: 0 }} />
+                <FaMapMarkerAlt size={13} style={{ color: '#2563eb', marginTop: '3px', flexShrink: 0 }} />
                 <span className="text-light opacity-75 small" style={{ fontSize: '0.65rem' }}>GCUF Campus, Faisalabad</span>
               </li>
               <li className="mb-3 d-flex align-items-start gap-2">
-                <FaPhone size={13} style={{ color: '#667eea', marginTop: '3px', flexShrink: 0 }} />
+                <FaPhone size={13} style={{ color: '#2563eb', marginTop: '3px', flexShrink: 0 }} />
                 <span className="text-light opacity-75 small" style={{ fontSize: '0.65rem' }}>+92 3208711060</span>
               </li>
               <li className="d-flex align-items-start gap-2">
-                <FaEnvelope size={13} style={{ color: '#667eea', marginTop: '3px', flexShrink: 0 }} />
+                <FaEnvelope size={13} style={{ color: '#2563eb', marginTop: '3px', flexShrink: 0 }} />
                 <span className="text-light opacity-75 small contact-email" style={{ fontSize: '0.65rem' }}>lostfoundgcuf@gmail.com </span>
               </li>
             </ul>
@@ -161,8 +161,8 @@ export default function Footer() {
             <div
               className="p-2 h-100 rounded-4"
               style={{
-                background: 'linear-gradient(135deg, rgba(102,126,234,0.05) 0%, rgba(118,75,162,0.05) 100%)',
-                border: '1px solid rgba(102,126,234,0.2)',
+                background: 'linear-gradient(135deg, rgba(37, 99, 235,0.05) 0%, rgba(20, 184, 166,0.05) 100%)',
+                border: '1px solid rgba(37, 99, 235,0.2)',
                 backdropFilter: 'blur(10px)'
               }}
             >
@@ -170,7 +170,7 @@ export default function Footer() {
                 <h5
                   className="fw-bold mb-3"
                   style={{
-                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    background: 'linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)',
                     WebkitBackgroundClip: 'text',
                     WebkitTextFillColor: 'transparent',
                     backgroundClip: 'text',
@@ -184,7 +184,7 @@ export default function Footer() {
                   className="mx-auto mb-2 d-flex align-items-center justify-content-center"
                   style={{
                     width: '46px', height: '46px',
-                    background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                    background: 'linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)',
                     color: 'white',
                     borderRadius: '50%',
                     fontSize: '1.12rem'
@@ -192,7 +192,7 @@ export default function Footer() {
                 >
                   <FaShieldAlt />
                 </div>
-                <h6 className="fw-bold mb-1" style={{ color: '#667eea', fontSize: '0.78rem' }}>
+                <h6 className="fw-bold mb-1" style={{ color: '#2563eb', fontSize: '0.78rem' }}>
                   Verified Platform
                 </h6>
                 <p className="small text-light opacity-75 mb-0" style={{ fontSize: '0.65rem' }}>GCUF-approved secure system</p>
@@ -201,13 +201,13 @@ export default function Footer() {
           </div>
         </div>
 
-        <hr className="my-4" style={{ borderColor: 'rgba(102,126,234,0.3)', opacity: 0.5 }} />
+        <hr className="my-4" style={{ borderColor: 'rgba(37, 99, 235,0.3)', opacity: 0.5 }} />
 
         {/* Copyright row */}
         <div className="row align-items-center gy-2">
           <div className="col-12 col-md-6 text-center text-md-start">
             <small className="text-light opacity-75" style={{ fontSize: '0.72rem' }}>
-              <span style={{ color: '#667eea' }}>©</span>
+              <span style={{ color: '#2563eb' }}>©</span>
               {' '}{currentYear}   Lost & Found Hub. All rights reserved.
             </small>
           </div>
@@ -230,7 +230,7 @@ export default function Footer() {
                   <div
                     className="fw-bold mb-1"
                     style={{
-                      background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+                      background: 'linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)',
                       WebkitBackgroundClip: 'text',
                       WebkitTextFillColor: 'transparent',
                       backgroundClip: 'text',
@@ -251,3 +251,5 @@ export default function Footer() {
     </footer>
   );
 }
+
+

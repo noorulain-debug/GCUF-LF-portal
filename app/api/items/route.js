@@ -8,6 +8,7 @@ import {
 } from "@/app/lib/aiMatcher";
 
 export const runtime = "nodejs";
+export const maxDuration = 60;
 
 export async function GET(req) {
   await connectDB();
@@ -37,7 +38,10 @@ export async function GET(req) {
     }
   }
 
-  const items = await Item.find(filter).populate("user", "name email phone");
+  const items = await Item.find(filter)
+    .select("-embedding")
+    .populate("user", "name email phone")
+    .lean();
 
   return new Response(JSON.stringify(items), {
     headers: { "Content-Type": "application/json" },
@@ -81,7 +85,12 @@ export async function POST(req) {
 
     await findAndNotifyMatches(newItem);
 
-    return new Response(JSON.stringify(newItem), {
+    const responseItem = await Item.findById(newItem._id)
+      .select("-embedding")
+      .populate("user", "name email phone")
+      .lean();
+
+    return new Response(JSON.stringify(responseItem || newItem), {
       status: 201,
       headers: { "Content-Type": "application/json" },
     });

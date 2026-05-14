@@ -9,6 +9,7 @@ import {
 } from "@/app/lib/aiMatcher";
 
 export const runtime = "nodejs";
+export const maxDuration = 60;
 export async function DELETE(req, context) {
   await connectDB();
 
@@ -92,5 +93,10 @@ export async function PUT(req, context) {
 
   await findAndNotifyMatches(updated);
 
-  return NextResponse.json(updated);
+  const responseItem = await Item.findById(id)
+    .select("-embedding")
+    .populate("user", "name email phone")
+    .lean();
+
+  return NextResponse.json(responseItem || updated);
 }

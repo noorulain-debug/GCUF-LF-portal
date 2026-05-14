@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import {
@@ -14,30 +14,14 @@ import {
 export default function BottomNav() {
   const pathname = usePathname();
   const router = useRouter();
-  const [user, setUser] = useState(null);
   const [showAddMenu, setShowAddMenu] = useState(false);
-
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const res = await fetch("/api/profile");
-        if (res.ok) {
-          const data = await res.json();
-          setUser(data);
-        }
-      } catch (err) {
-        // User not logged in
-      }
-    };
-    fetchUser();
-  }, []);
 
   const navItems = [
     { href: "/", icon: FaHome, label: "Home" },
     { href: "/browse", icon: FaTh, label: "Browse" },
     { href: "#add", icon: FaPlusCircle, label: "Report", isAction: true },
     { href: "/myItems", icon: FaSearch, label: "My Items" },
-    { href: user ? "/userProfile" : "/loginPage", icon: FaUser, label: user ? "Profile" : "Login" },
+    { href: "/userProfile", icon: FaUser, label: "Profile" },
   ];
 
   const isActive = (href) => {
@@ -65,7 +49,7 @@ export default function BottomNav() {
           left: 0;
           right: 0;
           background: white;
-          border-top: 1px solid rgba(102, 126, 234, 0.1);
+          border-top: 1px solid rgba(37, 99, 235, 0.1);
           box-shadow: 0 -2px 12px rgba(0, 0, 0, 0.06);
           z-index: 1040;
           padding-bottom: env(safe-area-inset-bottom, 0px);
@@ -96,7 +80,7 @@ export default function BottomNav() {
         }
 
         .nav-item-bottom.active {
-          color: #667eea;
+          color: #2563eb;
         }
 
         .nav-item-bottom.active::after {
@@ -107,13 +91,13 @@ export default function BottomNav() {
           transform: translateX(-50%);
           width: 20px;
           height: 2px;
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
           border-radius: 2px 2px 0 0;
         }
 
         .nav-item-bottom:active {
           transform: scale(0.92);
-          background: rgba(102, 126, 234, 0.08);
+          background: rgba(37, 99, 235, 0.08);
         }
 
         .nav-item-bottom .icon {
@@ -129,7 +113,7 @@ export default function BottomNav() {
 
         .add-button {
           position: relative;
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
           color: white !important;
           border-radius: 50%;
           width: 44px;
@@ -138,7 +122,7 @@ export default function BottomNav() {
           align-items: center;
           justify-content: center;
           margin-top: -16px;
-          box-shadow: 0 3px 12px rgba(102, 126, 234, 0.4);
+          box-shadow: 0 3px 12px rgba(37, 99, 235, 0.4);
           border: 3px solid white;
         }
 
@@ -189,8 +173,8 @@ export default function BottomNav() {
 
         .add-menu-item:hover,
         .add-menu-item:active {
-          background: rgba(102, 126, 234, 0.08);
-          color: #667eea;
+          background: rgba(37, 99, 235, 0.08);
+          color: #2563eb;
         }
 
         .add-menu-item .menu-icon {
@@ -326,3 +310,5 @@ export default function BottomNav() {
     </>
   );
 }
+
+

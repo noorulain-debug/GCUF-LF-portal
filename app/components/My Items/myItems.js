@@ -132,7 +132,7 @@ export default function MyItemsPage() {
       }
 
       toast.success("Item deleted successfully!", {
-        style: { background: "#667eea", color: "white" },
+        style: { background: "#2563eb", color: "white" },
       });
 
       setItems((prevItems) =>
@@ -203,7 +203,7 @@ export default function MyItemsPage() {
       );
 
       toast.success("Item marked as resolved!", {
-        style: { background: "#667eea", color: "white" },
+        style: { background: "#2563eb", color: "white" },
       });
     } catch (err) {
       console.error(err);
@@ -245,7 +245,7 @@ export default function MyItemsPage() {
 
         toast.dismiss(uploadToastId);
         toast.success("Image uploaded successfully!", {
-          style: { background: "#667eea", color: "white" },
+          style: { background: "#2563eb", color: "white" },
         });
       } catch (err) {
         console.error(err);
@@ -277,7 +277,7 @@ export default function MyItemsPage() {
       }
 
       toast.success("Item updated!", {
-        style: { background: "#667eea", color: "white" },
+        style: { background: "#2563eb", color: "white" },
       });
 
       // Update the item in local state
@@ -306,12 +306,12 @@ export default function MyItemsPage() {
         <div className="text-center py-5">
           <div
             className="spinner-border"
-            style={{ width: "3rem", height: "3rem", color: "#667eea" }}
+            style={{ width: "3rem", height: "3rem", color: "#2563eb" }}
             role="status"
           >
             <span className="visually-hidden">Checking authentication...</span>
           </div>
-          <p className="mt-3" style={{ color: "#764ba2" }}>
+          <p className="mt-3" style={{ color: "#0f766e" }}>
             Verifying your identity...
           </p>
         </div>
@@ -323,38 +323,38 @@ export default function MyItemsPage() {
     <>
       <style jsx global>{`
         .gradient-bg {
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
           border-radius: 20px;
         }
 
         .glass-effect {
           backdrop-filter: blur(10px);
           background: rgba(255, 255, 255, 0.92);
-          border: 1px solid rgba(102, 126, 234, 0.1);
+          border: 1px solid rgba(37, 99, 235, 0.1);
           border-radius: 16px;
         }
 
         .stat-card {
           background: linear-gradient(
             135deg,
-            rgba(102, 126, 234, 0.05) 0%,
-            rgba(118, 75, 162, 0.05) 100%
+            rgba(37, 99, 235, 0.05) 0%,
+            rgba(20, 184, 166, 0.05) 100%
           );
           border-radius: 16px;
-          border: 2px solid rgba(102, 126, 234, 0.1);
+          border: 2px solid rgba(37, 99, 235, 0.1);
           transition: all 0.3s ease;
           min-height: 96px;
         }
 
         .stat-card:hover {
           transform: translateY(-5px);
-          box-shadow: 0 15px 30px rgba(102, 126, 234, 0.15);
-          border-color: rgba(102, 126, 234, 0.3);
+          box-shadow: 0 15px 30px rgba(37, 99, 235, 0.15);
+          border-color: rgba(37, 99, 235, 0.3);
         }
 
         .item-card {
           transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-          border: 1px solid rgba(102, 126, 234, 0.1);
+          border: 1px solid rgba(37, 99, 235, 0.1);
           border-radius: 16px;
           overflow: hidden;
           background: white;
@@ -362,7 +362,7 @@ export default function MyItemsPage() {
 
         .item-card:hover {
           transform: translateY(-10px);
-          box-shadow: 0 25px 50px rgba(102, 126, 234, 0.15),
+          box-shadow: 0 25px 50px rgba(37, 99, 235, 0.15),
             0 15px 30px rgba(0, 0, 0, 0.1);
         }
 
@@ -371,7 +371,7 @@ export default function MyItemsPage() {
           letter-spacing: 0.5px;
           padding: 2px 8px;
           border-radius: 20px;
-          box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+          box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
           text-transform: uppercase;
           font-size: 0.7rem;
         }
@@ -381,26 +381,30 @@ export default function MyItemsPage() {
           letter-spacing: 0.5px;
           padding: 2px 8px;
           border-radius: 20px;
-          box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+          box-shadow: 0 4px 15px rgba(37, 99, 235, 0.2);
           text-transform: uppercase;
           font-size: 0.7rem;
         }
 
         .image-container {
-          height: 200px;
+          aspect-ratio: 4 / 3;
+          height: auto;
           overflow: hidden;
           border-radius: 16px 16px 0 0;
+          background: #f4f6fb;
         }
 
         .image-container img {
-          transition: transform 0.6s ease;
+          object-fit: contain;
+          background: #f4f6fb;
+          transition: transform 0.2s ease;
         }
 
         .my-item-placeholder {
           width: 100%;
           height: 100%;
           background: #eef1f8;
-          color: #667eea;
+          color: #2563eb;
           display: flex;
           flex-direction: column;
           align-items: center;
@@ -418,7 +422,7 @@ export default function MyItemsPage() {
         }
 
         .item-card:hover .image-container img {
-          transform: scale(1.1);
+          transform: scale(1.02);
         }
 
         .modal-backdrop-custom {
@@ -447,7 +451,7 @@ export default function MyItemsPage() {
 
         .modal-header-custom {
           padding: 20px 24px;
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
           color: white;
           position: relative;
         }
@@ -460,7 +464,7 @@ export default function MyItemsPage() {
 
         .modal-footer-custom {
           padding: 20px 24px;
-          border-top: 1px solid rgba(102, 126, 234, 0.1);
+          border-top: 1px solid rgba(37, 99, 235, 0.1);
           display: flex;
           justify-content: flex-end;
           gap: 12px;
@@ -489,7 +493,7 @@ export default function MyItemsPage() {
         }
 
         .form-control-custom {
-          border: 1px solid rgba(102, 126, 234, 0.2);
+          border: 1px solid rgba(37, 99, 235, 0.2);
           border-radius: 10px;
           padding: 12px 16px;
           font-size: 14px;
@@ -500,24 +504,24 @@ export default function MyItemsPage() {
 
         .form-control-custom:focus {
           outline: none;
-          border-color: #667eea;
-          box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+          border-color: #2563eb;
+          box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
         .image-upload-container {
-          border: 2px dashed rgba(102, 126, 234, 0.3);
+          border: 2px dashed rgba(37, 99, 235, 0.3);
           border-radius: 12px;
           padding: 20px;
           text-align: center;
-          background: rgba(102, 126, 234, 0.03);
+          background: rgba(37, 99, 235, 0.03);
           cursor: pointer;
           transition: all 0.2s ease;
           margin-bottom: 16px;
         }
 
         .image-upload-container:hover {
-          background: rgba(102, 126, 234, 0.08);
-          border-color: #667eea;
+          background: rgba(37, 99, 235, 0.08);
+          border-color: #2563eb;
         }
 
         .image-preview {
@@ -530,11 +534,12 @@ export default function MyItemsPage() {
         .image-preview img {
           width: 100%;
           height: auto;
-          object-fit: cover;
+          object-fit: contain;
+          background: #f4f6fb;
         }
 
         .btn-primary-custom {
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
           color: white;
           border: none;
           border-radius: 10px;
@@ -546,7 +551,7 @@ export default function MyItemsPage() {
 
         .btn-primary-custom:hover:not(:disabled) {
           transform: translateY(-2px);
-          box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+          box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
         }
 
         .btn-primary-custom:disabled {
@@ -556,8 +561,8 @@ export default function MyItemsPage() {
 
         .btn-outline-custom {
           background: transparent;
-          color: #667eea;
-          border: 2px solid #667eea;
+          color: #2563eb;
+          border: 2px solid #2563eb;
           border-radius: 10px;
           padding: 12px 24px;
           font-weight: 600;
@@ -566,7 +571,7 @@ export default function MyItemsPage() {
         }
 
         .btn-outline-custom:hover {
-          background: rgba(102, 126, 234, 0.1);
+          background: rgba(37, 99, 235, 0.1);
         }
 
         .btn-danger-custom {
@@ -631,7 +636,7 @@ export default function MyItemsPage() {
 
         .action-btn:hover {
           transform: translateY(-2px);
-          box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+          box-shadow: 0 4px 12px rgba(37, 99, 235, 0.2);
         }
         
         /* Mobile Responsive Styles - COMPACT */
@@ -666,7 +671,8 @@ export default function MyItemsPage() {
           }
           
           .image-container {
-            height: 100px !important;
+            aspect-ratio: 4 / 3;
+            height: auto !important;
           }
           
           .item-card .card-body {
@@ -733,7 +739,7 @@ export default function MyItemsPage() {
 
           .edit-modal .image-preview img {
             height: 140px !important;
-            object-fit: cover;
+            object-fit: contain;
           }
 
           .edit-modal .image-upload-container {
@@ -830,7 +836,8 @@ export default function MyItemsPage() {
           }
           
           .image-container {
-            height: 90px !important;
+            aspect-ratio: 4 / 3;
+            height: auto !important;
           }
 
           .my-item-placeholder {
@@ -937,7 +944,7 @@ export default function MyItemsPage() {
                     boxShadow: "0 8px 20px rgba(255, 255, 255, 0.2)",
                   }}
                 >
-                  <FaUserCircle size={30} style={{ color: "#667eea" }} />
+                  <FaUserCircle size={30} style={{ color: "#2563eb" }} />
                 </div>
                 <div>
                   <h1 className="display-5 fw-bold mb-1">
@@ -953,7 +960,7 @@ export default function MyItemsPage() {
               <button
                 className="btn btn-light btn-lg px-4 py-2 rounded-pill fw-bold"
                 onClick={() => router.push("/browse")}
-                style={{ color: "#667eea" }}
+                style={{ color: "#2563eb" }}
               >
                 Browse All Items
               </button>
@@ -966,11 +973,11 @@ export default function MyItemsPage() {
             <div className="stat-card text-center p-4 d-flex flex-column align-items-center justify-content-center">
               <div
                 className="display-5 fw-bold mb-1"
-                style={{ color: "#667eea" }}
+                style={{ color: "#2563eb" }}
               >
                 {stats.total}
               </div>
-              <div className="small" style={{ color: "#764ba2" }}>
+              <div className="small" style={{ color: "#0f766e" }}>
                 Total Items
               </div>
             </div>
@@ -979,11 +986,11 @@ export default function MyItemsPage() {
             <div className="stat-card text-center p-4 d-flex flex-column align-items-center justify-content-center">
               <div
                 className="display-5 fw-bold mb-1"
-                style={{ color: "#667eea" }}
+                style={{ color: "#2563eb" }}
               >
                 {stats.lost}
               </div>
-              <div className="small" style={{ color: "#764ba2" }}>
+              <div className="small" style={{ color: "#0f766e" }}>
                 Lost Items
               </div>
             </div>
@@ -992,11 +999,11 @@ export default function MyItemsPage() {
             <div className="stat-card text-center p-4 d-flex flex-column align-items-center justify-content-center">
               <div
                 className="display-5 fw-bold mb-1"
-                style={{ color: "#667eea" }}
+                style={{ color: "#2563eb" }}
               >
                 {stats.found}
               </div>
-              <div className="small" style={{ color: "#764ba2" }}>
+              <div className="small" style={{ color: "#0f766e" }}>
                 Found Items
               </div>
             </div>
@@ -1005,11 +1012,11 @@ export default function MyItemsPage() {
             <div className="stat-card text-center p-4 d-flex flex-column align-items-center justify-content-center">
               <div
                 className="display-5 fw-bold mb-1"
-                style={{ color: "#667eea" }}
+                style={{ color: "#2563eb" }}
               >
                 {stats.resolved}
               </div>
-              <div className="small" style={{ color: "#764ba2" }}>
+              <div className="small" style={{ color: "#0f766e" }}>
                 Resolved
               </div>
             </div>
@@ -1021,7 +1028,7 @@ export default function MyItemsPage() {
             <div className="col-md-6 mb-3 mb-md-0">
               <div className="input-group">
                 <span className="input-group-text bg-white border-end-0">
-                  <FaSearch style={{ color: "#667eea" }} />
+                  <FaSearch style={{ color: "#2563eb" }} />
                 </span>
                 <input
                   type="text"
@@ -1029,7 +1036,7 @@ export default function MyItemsPage() {
                   placeholder="Search your items..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  style={{ borderColor: "rgba(102, 126, 234, 0.2)" }}
+                  style={{ borderColor: "rgba(37, 99, 235, 0.2)" }}
                 />
               </div>
             </div>
@@ -1042,13 +1049,13 @@ export default function MyItemsPage() {
                   style={{
                     background:
                       activeFilter === "all"
-                        ? "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+                        ? "linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)"
                         : "transparent",
-                    color: activeFilter === "all" ? "white" : "#667eea",
+                    color: activeFilter === "all" ? "white" : "#2563eb",
                     border:
                       activeFilter === "all"
                         ? "2px solid transparent"
-                        : "2px solid #667eea",
+                        : "2px solid #2563eb",
                   }}
                 >
                   All Items
@@ -1060,13 +1067,13 @@ export default function MyItemsPage() {
                   style={{
                     background:
                       activeFilter === "lost"
-                        ? "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+                        ? "linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)"
                         : "transparent",
-                    color: activeFilter === "lost" ? "white" : "#667eea",
+                    color: activeFilter === "lost" ? "white" : "#2563eb",
                     border:
                       activeFilter === "lost"
                         ? "2px solid transparent"
-                        : "2px solid #667eea",
+                        : "2px solid #2563eb",
                   }}
                 >
                   Lost Items
@@ -1078,13 +1085,13 @@ export default function MyItemsPage() {
                   style={{
                     background:
                       activeFilter === "found"
-                        ? "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+                        ? "linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)"
                         : "transparent",
-                    color: activeFilter === "found" ? "white" : "#667eea",
+                    color: activeFilter === "found" ? "white" : "#2563eb",
                     border:
                       activeFilter === "found"
                         ? "2px solid transparent"
-                        : "2px solid #667eea",
+                        : "2px solid #2563eb",
                   }}
                 >
                   Found Items
@@ -1096,13 +1103,13 @@ export default function MyItemsPage() {
                   style={{
                     background:
                       activeFilter === "resolved"
-                        ? "linear-gradient(135deg, #667eea 0%, #667eea 100%)"
+                        ? "linear-gradient(135deg, #2563eb 0%, #2563eb 100%)"
                         : "transparent",
-                    color: activeFilter === "resolved" ? "white" : "#667eea",
+                    color: activeFilter === "resolved" ? "white" : "#2563eb",
                     border:
                       activeFilter === "resolved"
                         ? "2px solid transparent"
-                        : "2px solid #667eea",
+                        : "2px solid #2563eb",
                   }}
                 >
                   Resolved
@@ -1116,29 +1123,29 @@ export default function MyItemsPage() {
           <div className="text-center py-5">
             <div
               className="spinner-border"
-              style={{ width: "3rem", height: "3rem", color: "#667eea" }}
+              style={{ width: "3rem", height: "3rem", color: "#2563eb" }}
               role="status"
             >
               <span className="visually-hidden">Loading your items...</span>
             </div>
-            <p className="mt-3" style={{ color: "#764ba2" }}>
+            <p className="mt-3" style={{ color: "#0f766e" }}>
               Loading your reported items...
             </p>
           </div>
         ) : error ? (
           <div className="text-center py-5">
             <div className="display-1 mb-3">❌</div>
-            <h3 className="h4 fw-bold mb-2" style={{ color: "#667eea" }}>
+            <h3 className="h4 fw-bold mb-2" style={{ color: "#2563eb" }}>
               Error Loading Items
             </h3>
-            <p className="mb-4" style={{ color: "#764ba2" }}>
+            <p className="mb-4" style={{ color: "#0f766e" }}>
               {error}
             </p>
             <button
               className="btn px-4 py-2 rounded-pill fw-bold text-white"
               onClick={() => dispatch(fetchMyItems())}
               style={{
-                background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                background: "linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)",
               }}
             >
               Try Again
@@ -1147,12 +1154,12 @@ export default function MyItemsPage() {
         ) : filteredItems.length === 0 ? (
           <div className="empty-state text-center py-5 my-4">
             <div className="display-1 mb-3">
-              <FaBoxOpen size={80} style={{ color: "#667eea" }} />
+              <FaBoxOpen size={80} style={{ color: "#2563eb" }} />
             </div>
-            <h3 className="h4 fw-bold mb-2" style={{ color: "#667eea" }}>
+            <h3 className="h4 fw-bold mb-2" style={{ color: "#2563eb" }}>
               No items found
             </h3>
-            <p className="mb-4" style={{ color: "#764ba2" }}>
+            <p className="mb-4" style={{ color: "#0f766e" }}>
               {searchQuery || activeFilter !== "all"
                 ? "Try adjusting your filters or search"
                 : "You haven't reported any items yet"}
@@ -1162,7 +1169,7 @@ export default function MyItemsPage() {
                 className="btn px-4 py-2 rounded-pill fw-bold text-white"
                 style={{
                   background:
-                    "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                    "linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)",
                 }}
                 onClick={() => router.push("/lost")}
               >
@@ -1172,7 +1179,7 @@ export default function MyItemsPage() {
                 className="btn px-4 py-2 rounded-pill fw-bold text-white"
                 style={{
                   background:
-                    "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                    "linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)",
                 }}
                 onClick={() => router.push("/found")}
               >
@@ -1189,8 +1196,9 @@ export default function MyItemsPage() {
                     {item.imageUrl ? (
                       <img
                         src={item.imageUrl}
-                        className="card-img-top w-100 h-100 object-cover"
+                        className="card-img-top w-100 h-100 object-contain"
                         alt={item.title}
+                        loading="lazy"
                       />
                     ) : (
                       <div className="my-item-placeholder">
@@ -1204,10 +1212,10 @@ export default function MyItemsPage() {
                         style={{
                           background:
                             item.type === "lost"
-                              ? "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
+                              ? "linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)"
                               : item.type === "found"
-                                ? "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
-                                : "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                                ? "linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)"
+                                : "linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)",
                         }}
                       >
                         {item.type?.toUpperCase()}
@@ -1219,14 +1227,14 @@ export default function MyItemsPage() {
                   <div className="card-body p-4">
                     <h5
                       className="card-title fw-bold mb-2"
-                      style={{ color: "#667eea" }}
+                      style={{ color: "#2563eb" }}
                     >
                       {item.title}
                     </h5>
                     <p
                       className="card-text small mb-3"
                       style={{
-                        color: "#764ba2",
+                        color: "#0f766e",
                         display: "-webkit-box",
                         WebkitLineClamp: "2",
                         WebkitBoxOrient: "vertical",
@@ -1240,12 +1248,12 @@ export default function MyItemsPage() {
                       <div className="d-flex align-items-center small mb-2 my-item-meta">
                         <FaMapMarkerAlt
                           className="me-2 flex-shrink-0"
-                          style={{ color: "#667eea" }}
+                          style={{ color: "#2563eb" }}
                           size={12}
                         />
                         <span
                           className="text-truncate"
-                          style={{ color: "#764ba2" }}
+                          style={{ color: "#0f766e" }}
                         >
                           {item.location}
                         </span>
@@ -1255,10 +1263,10 @@ export default function MyItemsPage() {
                         <div className="d-flex align-items-center small my-item-meta">
                           <FaCalendarAlt
                             className="me-2 flex-shrink-0"
-                            style={{ color: "#667eea" }}
+                            style={{ color: "#2563eb" }}
                             size={12}
                           />
-                          <span style={{ color: "#764ba2" }}>
+                          <span style={{ color: "#0f766e" }}>
                             {new Date(item.date).toLocaleDateString("en-US", {
                               month: "short",
                               day: "numeric",
@@ -1273,8 +1281,8 @@ export default function MyItemsPage() {
                       <span
                         className="badge item-category-badge"
                         style={{
-                          background: "rgba(102, 126, 234, 0.1)",
-                          color: "#667eea",
+                          background: "rgba(37, 99, 235, 0.1)",
+                          color: "#2563eb",
                           textTransform: "capitalize",
                         }}
                       >
@@ -1295,7 +1303,7 @@ export default function MyItemsPage() {
                                 role="status"
                               ></span>
                             ) : (
-                              <div style={{ color: "#667eea" }}>
+                              <div style={{ color: "#2563eb" }}>
                                 <FaCheck size={12} />
                               </div>
                             )}
@@ -1305,7 +1313,7 @@ export default function MyItemsPage() {
                           className="action-btn"
                           onClick={() => openEditModal(item)}
                         >
-                          <div style={{ color: "#667eea" }}>
+                          <div style={{ color: "#2563eb" }}>
                             <FaEdit size={12} />
                           </div>
                         </button>
@@ -1316,7 +1324,7 @@ export default function MyItemsPage() {
                             document.body.style.overflow = "hidden";
                           }}
                         >
-                          <div style={{ color: "#667eea" }}>
+                          <div style={{ color: "#2563eb" }}>
                             <FaTrash size={12} />
                           </div>
                         </button>
@@ -1336,7 +1344,7 @@ export default function MyItemsPage() {
                 className="btn px-4 py-2 rounded-pill fw-bold text-white"
                 style={{
                   background:
-                    "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                    "linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)",
                 }}
                 onClick={() => router.push("/lost")}
               >
@@ -1346,7 +1354,7 @@ export default function MyItemsPage() {
                 className="btn px-4 py-2 rounded-pill fw-bold text-white"
                 style={{
                   background:
-                    "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
+                    "linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)",
                 }}
                 onClick={() => router.push("/found")}
               >
@@ -1355,8 +1363,8 @@ export default function MyItemsPage() {
               <button
                 className="btn px-4 py-2 rounded-pill fw-bold"
                 style={{
-                  border: "2px solid #667eea",
-                  color: "#667eea",
+                  border: "2px solid #2563eb",
+                  color: "#2563eb",
                   background: "transparent",
                 }}
                 onClick={() => router.push("/browse")}
@@ -1382,9 +1390,9 @@ export default function MyItemsPage() {
             </div>
 
             <div className="modal-body-custom">
-              <p style={{ color: "#764ba2", marginBottom: 0 }}>
+              <p style={{ color: "#0f766e", marginBottom: 0 }}>
                 Are you sure you want to permanently delete{" "}
-                <strong style={{ color: "#667eea" }}>
+                <strong style={{ color: "#2563eb" }}>
                   {confirmDelete.title}
                 </strong>
                 ?
@@ -1487,7 +1495,7 @@ export default function MyItemsPage() {
               <div>
                 <label
                   className="d-block mb-2 small fw-medium"
-                  style={{ color: "#667eea" }}
+                  style={{ color: "#2563eb" }}
                 >
                   Item Image
                 </label>
@@ -1505,9 +1513,9 @@ export default function MyItemsPage() {
                   >
                     <FaCamera
                       size={32}
-                      style={{ color: "#667eea", marginBottom: 12 }}
+                      style={{ color: "#2563eb", marginBottom: 12 }}
                     />
-                    <p className="mb-1" style={{ color: "#667eea" }}>
+                    <p className="mb-1" style={{ color: "#2563eb" }}>
                       Click to upload image
                     </p>
                     <p className="small text-muted mb-0">
@@ -1560,3 +1568,5 @@ export default function MyItemsPage() {
     </>
   );
 }
+
+

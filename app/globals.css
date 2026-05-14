@@ -1,9 +1,9 @@
 /* Mobile-First Global Styles for Capacitor App */
 
 :root {
-  --primary-color: #667eea;
-  --secondary-color: #764ba2;
-  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --primary-color: #2563eb;
+  --secondary-color: #0f766e;
+  --primary-gradient: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
   --background: #ffffff;
   --foreground: #171717;
   --safe-area-inset-top: env(safe-area-inset-top, 0px);
@@ -23,7 +23,9 @@
 html {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: transparent;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+  width: 100%;
+  overflow-y: auto;
 }
 
 body {
@@ -35,8 +37,15 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  overflow-y: auto !important;
   padding-bottom: var(--bottom-nav-height);
   font-size: 14px;
+}
+
+main,
+.container,
+.container-fluid {
+  max-width: 100%;
 }
 
 /* Safe Area Padding for notched devices */
@@ -50,8 +59,13 @@ body {
 
 /* Mobile Container Adjustments */
 .container {
+  width: min(100%, 1180px);
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
   padding-left: 12px;
   padding-right: 12px;
+  overflow-x: visible;
 }
 
 @media (min-width: 768px) {
@@ -283,7 +297,14 @@ p { font-size: 0.875rem; line-height: 1.5; }
 img {
   max-width: 100%;
   height: auto;
-  object-fit: cover;
+}
+
+.object-contain {
+  object-fit: contain !important;
+}
+
+.object-cover {
+  object-fit: cover !important;
 }
 
 /* Image containers - proper aspect ratio */
@@ -291,13 +312,15 @@ img {
   position: relative;
   overflow: hidden;
   background: #f5f5f5;
+  aspect-ratio: 4 / 3;
 }
 
 .image-container img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
+  object-fit: contain;
+  background: #f4f6fb;
+  transition: transform 0.2s ease;
 }
 
 /* Full-width image modal for mobile */
@@ -392,7 +415,7 @@ img {
 
 /* Prevent overscroll bounce on iOS */
 html, body {
-  overscroll-behavior: none;
+  overscroll-behavior: auto;
 }
 
 /* Custom scrollbar for mobile web */
@@ -406,7 +429,7 @@ html, body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(102, 126, 234, 0.3);
+  background: rgba(37, 99, 235, 0.3);
   border-radius: 3px;
 }
 
@@ -466,7 +489,7 @@ html, body {
   background: var(--primary-gradient);
   color: white;
   border: none;
-  box-shadow: 0 4px 16px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.4);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -476,7 +499,7 @@ html, body {
 
 .fab:active {
   transform: scale(0.95);
-  box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
 }
 
 @media (min-width: 992px) {
@@ -553,7 +576,7 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(102, 126, 234, 0.1);
+  background: rgba(37, 99, 235, 0.1);
   color: var(--primary-color);
   margin-right: 8px;
 }
@@ -702,7 +725,7 @@ html, body {
   height: 168px;
   padding: 10px;
   background:
-    linear-gradient(135deg, rgba(102, 126, 234, 0.08), rgba(118, 75, 162, 0.08)),
+    linear-gradient(135deg, rgba(37, 99, 235, 0.08), rgba(20, 184, 166, 0.08)),
     #f8fafc;
 }
 
@@ -718,7 +741,7 @@ html, body {
   min-height: 100%;
   border-radius: 12px;
   background: #eef1f8;
-  color: #667eea;
+  color: #2563eb;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -789,8 +812,8 @@ html, body {
 /* Inputs */
 .form-control:focus,
 .form-select:focus {
-  border-color: #667eea !important;
-  box-shadow: 0 0 0 0.15rem rgba(102, 126, 234, 0.15) !important;
+  border-color: #2563eb !important;
+  box-shadow: 0 0 0 0.15rem rgba(37, 99, 235, 0.15) !important;
 }
 
 /* Modal improvements */
@@ -886,7 +909,7 @@ html, body {
 .item-card,
 .user-card,
 .stat-card {
-  border-color: rgba(102, 126, 234, 0.12) !important;
+  border-color: rgba(37, 99, 235, 0.12) !important;
 }
 
 .admin-section-switch {
@@ -1342,7 +1365,7 @@ html, body {
 .admin-report-modal {
   max-width: 520px !important;
   overflow: hidden;
-  border: 1px solid rgba(102, 126, 234, 0.12);
+  border: 1px solid rgba(37, 99, 235, 0.12);
 }
 
 .admin-report-modal-header {
@@ -1371,7 +1394,7 @@ html, body {
   padding: 10px;
   border-radius: 14px;
   background: #f8fafc;
-  border: 1px solid rgba(102, 126, 234, 0.1);
+  border: 1px solid rgba(37, 99, 235, 0.1);
 }
 
 .admin-report-modal-image {
@@ -1398,7 +1421,7 @@ html, body {
 .admin-report-detail-tile {
   padding: 9px 10px;
   border-radius: 12px;
-  background: rgba(102, 126, 234, 0.06);
+  background: rgba(37, 99, 235, 0.06);
 }
 
 .admin-report-detail-tile small {
@@ -1707,3 +1730,5 @@ html, body {
     padding: 10px 12px 12px !important;
   }
 }
+
+

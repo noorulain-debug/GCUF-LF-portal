@@ -2,6 +2,7 @@ import Item from "@/app/models/items";
 import { sendMatchEmail } from "@/app/lib/sendEmail";
 
 const DEFAULT_MODEL = "Xenova/all-MiniLM-L6-v2";
+const DEFAULT_HF_API_MODEL = "sentence-transformers/all-MiniLM-L6-v2";
 const DEFAULT_THRESHOLD = 0.4;
 
 let extractorPromise;
@@ -29,6 +30,97 @@ async function getExtractor() {
   return extractorPromise;
 }
 
+function getHuggingFaceToken() {
+  return process.env.HF_API_TOKEN || process.env.HUGGINGFACEHUB_API_TOKEN;
+}
+
+function averageVectors(vectors) {
+  if (!Array.isArray(vectors) || !vectors.length) {
+    return [];
+  }
+
+  const width = vectors[0]?.length || 0;
+  if (!width) {
+    return [];
+  }
+
+  const totals = Array(width).fill(0);
+
+  for (const vector of vectors) {
+    for (let index = 0; index < width; index += 1) {
+      totals[index] += Number(vector[index]) || 0;
+    }
+  }
+
+  return totals.map((value) => value / vectors.length);
+}
+
+function normalizeVector(vector) {
+  const magnitude = Math.sqrt(
+    vector.reduce((total, value) => total + value * value, 0)
+  );
+
+  if (!magnitude) {
+    return vector;
+  }
+
+  return vector.map((value) => value / magnitude);
+}
+
+function parseHuggingFaceEmbedding(output) {
+  if (Array.isArray(output) && typeof output[0] === "number") {
+    return normalizeVector(output.map(Number));
+  }
+
+  if (Array.isArray(output) && Array.isArray(output[0])) {
+    if (typeof output[0][0] === "number") {
+      return normalizeVector(averageVectors(output));
+    }
+
+    if (Array.isArray(output[0][0])) {
+      return normalizeVector(averageVectors(output[0]));
+    }
+  }
+
+  return [];
+}
+
+async function createHuggingFaceApiEmbedding(text) {
+  const token = getHuggingFaceToken();
+
+  if (!token) {
+    return [];
+  }
+
+  const model = process.env.HF_MATCH_MODEL || DEFAULT_HF_API_MODEL;
+  const response = await fetch(
+    `https://router.huggingface.co/hf-inference/models/${model}/pipeline/feature-extraction`,
+    {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        inputs: text,
+        options: {
+          wait_for_model: true,
+        },
+      }),
+    }
+  );
+
+  const output = await response.json();
+
+  if (!response.ok) {
+    throw new Error(
+      output?.error || `Hugging Face embedding request failed: ${response.status}`
+    );
+  }
+
+  return parseHuggingFaceEmbedding(output);
+}
+
 function normalizeText(value) {
   return String(value || "")
     .toLowerCase()
@@ -52,6 +144,15 @@ export async function createItemEmbedding(item) {
 
   if (!text) {
     return [];
+  }
+
+  try {
+    const apiEmbedding = await createHuggingFaceApiEmbedding(text);
+    if (apiEmbedding.length) {
+      return apiEmbedding;
+    }
+  } catch (error) {
+    console.error("Hugging Face API embedding failed:", error);
   }
 
   const extractor = await getExtractor();

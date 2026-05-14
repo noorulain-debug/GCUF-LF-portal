@@ -15,8 +15,10 @@ export async function GET(req) {
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
 
     const items = await Item.find({ user: decoded.id })
+      .select("title description type location date createdAt")
       .sort({ createdAt: -1 })
-      .limit(10);
+      .limit(10)
+      .lean();
 
     const activity = items.map((item) => ({
       title: item.title,

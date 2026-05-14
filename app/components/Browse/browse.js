@@ -19,50 +19,15 @@ export default function Browse() {
   const [categoryFilter, setCategoryFilter] = useState(categoryFromUrl);
   const [searchQuery, setSearchQuery] = useState("");
   const [sortBy, setSortBy] = useState("newest");
-  const [hoveredItem, setHoveredItem] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [selectedItem, setSelectedItem] = useState(null);
   const [user, setUser] = useState(null);
-  const [checkingAuth, setCheckingAuth] = useState(true);
-
-  useEffect(() => {
-    let isMounted = true;
-
-    fetch("/api/profile")
-      .then(async (res) => {
-        if (!isMounted) return;
-
-        if (!res.ok) {
-          setUser(null);
-          return;
-        }
-
-        const data = await res.json();
-        if (isMounted) setUser(data);
-      })
-      .catch(() => {
-        if (isMounted) setUser(null);
-      })
-      .finally(() => {
-        if (isMounted) setCheckingAuth(false);
-      });
-
-    return () => {
-      isMounted = false;
-    };
-  }, []);
+  const [hasCheckedUser, setHasCheckedUser] = useState(false);
+  const [visibleCount, setVisibleCount] = useState(24);
 
   useEffect(() => {
     dispatch(fetchItems({ type: typeFilter, category: categoryFilter }));
   }, [dispatch, typeFilter, categoryFilter]);
-
-  useEffect(() => {
-    document.body.style.overflow = showModal ? "hidden" : "auto";
-
-    return () => {
-      document.body.style.overflow = "auto";
-    };
-  }, [showModal]);
 
   const filteredItems = items.filter(item => {
     if (item.type === "resolved") return false;
@@ -85,15 +50,66 @@ export default function Browse() {
     }
   });
 
-  const handleItemClick = (item) => {
+  const visibleItems = sortedItems.slice(0, visibleCount);
+  const hasMoreItems = visibleCount < sortedItems.length;
+
+  const ensureUser = async () => {
+    if (hasCheckedUser) return user;
+
+    try {
+      const res = await fetch("/api/profile");
+      if (!res.ok) {
+        setUser(null);
+        setHasCheckedUser(true);
+        return null;
+      }
+
+      const data = await res.json();
+      setUser(data);
+      setHasCheckedUser(true);
+      return data;
+    } catch {
+      setUser(null);
+      setHasCheckedUser(true);
+      return null;
+    }
+  };
+
+  const handleItemClick = async (item) => {
     setSelectedItem(item);
     setShowModal(true);
+    ensureUser();
   };
 
   const handleCloseModal = () => {
     setShowModal(false);
     setSelectedItem(null);
   };
+
+  useEffect(() => {
+    const isModalOpen = showModal && selectedItem;
+    document.documentElement.classList.toggle("browse-modal-open", Boolean(isModalOpen));
+    document.body.classList.toggle("browse-modal-open", Boolean(isModalOpen));
+
+    if (!isModalOpen) {
+      document.documentElement.style.removeProperty("overflow");
+      document.body.style.removeProperty("overflow");
+      document.body.style.removeProperty("position");
+      document.body.style.removeProperty("top");
+      document.body.style.removeProperty("width");
+      return;
+    }
+
+    return () => {
+      document.documentElement.classList.remove("browse-modal-open");
+      document.body.classList.remove("browse-modal-open");
+      document.documentElement.style.removeProperty("overflow");
+      document.body.style.removeProperty("overflow");
+      document.body.style.removeProperty("position");
+      document.body.style.removeProperty("top");
+      document.body.style.removeProperty("width");
+    };
+  }, [showModal, selectedItem]);
 
   const formatWhatsAppPhone = (phone) => {
     if (!phone) return "";
@@ -133,19 +149,90 @@ export default function Browse() {
     <>
       <style jsx global>{`
         :root {
-          --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          --primary-color: #667eea;
-          --secondary-color: #764ba2;
-          --light-primary: rgba(102, 126, 234, 0.1);
-          --light-secondary: rgba(118, 75, 162, 0.1);
+          --primary-gradient: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
+          --primary-color: #2563eb;
+          --secondary-color: #0f766e;
+          --browse-ink: #0f172a;
+          --browse-muted: #64748b;
+          --browse-border: rgba(15, 23, 42, 0.1);
+          --light-primary: rgba(37, 99, 235, 0.1);
+          --light-secondary: rgba(20, 184, 166, 0.12);
+        }
+
+        html.browse-modal-open,
+        body.browse-modal-open {
+          overflow: hidden !important;
+        }
+
+        html:not(.browse-modal-open),
+        body:not(.browse-modal-open) {
+          position: static !important;
+          top: auto !important;
+          width: auto !important;
+          height: auto !important;
+          overflow-y: auto !important;
+        }
+
+        .browse-page-shell {
+          max-width: 1180px;
+          overflow-x: clip;
+          overflow-y: visible;
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+        }
+
+        .browse-hero {
+          background:
+            linear-gradient(135deg, rgba(37, 99, 235, 0.96), rgba(20, 184, 166, 0.92)),
+            radial-gradient(circle at 85% 20%, rgba(255, 255, 255, 0.28), transparent 32%);
+          border: 1px solid rgba(255, 255, 255, 0.35);
+          box-shadow: 0 18px 45px rgba(15, 23, 42, 0.14);
+        }
+
+        .browse-hero h1 {
+          letter-spacing: 0;
+        }
+
+        .browse-stats {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 10px;
+        }
+
+        .browse-stat {
+          background: rgba(255, 255, 255, 0.96);
+          border: 1px solid rgba(255, 255, 255, 0.52);
+          border-radius: 8px;
+          padding: 10px 12px;
+          min-width: 0;
+        }
+
+        .browse-stat-value {
+          color: #0f172a;
+          font-size: 1.2rem;
+          font-weight: 800;
+          line-height: 1;
+        }
+
+        .browse-stat-label {
+          color: #64748b;
+          font-size: 0.7rem;
+          font-weight: 700;
+          margin-top: 4px;
+        }
+
+        .browse-filter-panel {
+          background: #ffffff;
+          border: 1px solid var(--browse-border);
+          box-shadow: 0 12px 30px rgba(15, 23, 42, 0.06);
         }
         
         .glass-effect {
           backdrop-filter: blur(15px);
           -webkit-backdrop-filter: blur(15px);
           background: rgba(255, 255, 255, 0.92);
-          border: 1px solid rgba(102, 126, 234, 0.1);
-          box-shadow: 0 8px 32px rgba(102, 126, 234, 0.08);
+          border: 1px solid rgba(37, 99, 235, 0.1);
+          box-shadow: 0 8px 32px rgba(37, 99, 235, 0.08);
         }
         
         .gradient-bg {
@@ -173,31 +260,31 @@ export default function Browse() {
         }
         
         .card-hover-3d {
-          transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+          transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
           border: none;
           overflow: hidden;
           background: white;
-          border-radius: 20px !important;
-          border: 1px solid rgba(102, 126, 234, 0.1);
+          border-radius: 12px !important;
+          border: 1px solid rgba(37, 99, 235, 0.1);
         }
         
         .card-hover-3d:hover {
-          transform: translateY(-12px) scale(1.02);
-          box-shadow: 0 25px 50px rgba(102, 126, 234, 0.15), 0 15px 30px rgba(118, 75, 162, 0.1) !important;
-          border-color: rgba(102, 126, 234, 0.3);
+          transform: translateY(-4px);
+          box-shadow: 0 14px 28px rgba(37, 99, 235, 0.12) !important;
+          border-color: rgba(37, 99, 235, 0.3);
         }
         
         .stat-card {
           background: rgba(255, 255, 255, 0.95);
           border-radius: 20px;
-          border: 1px solid rgba(102, 126, 234, 0.2);
+          border: 1px solid rgba(37, 99, 235, 0.2);
           transition: all 0.4s ease;
-          box-shadow: 0 10px 20px rgba(102, 126, 234, 0.05);
+          box-shadow: 0 10px 20px rgba(37, 99, 235, 0.05);
         }
         
         .stat-card:hover {
           transform: translateY(-8px);
-          box-shadow: 0 20px 40px rgba(102, 126, 234, 0.15) !important;
+          box-shadow: 0 20px 40px rgba(37, 99, 235, 0.15) !important;
         }
         
         .type-badge {
@@ -205,7 +292,7 @@ export default function Browse() {
           letter-spacing: 1px;
           padding: 8px 20px;
           border-radius: 25px;
-          box-shadow: 0 6px 20px rgba(102, 126, 234, 0.2);
+          box-shadow: 0 6px 20px rgba(37, 99, 235, 0.2);
           font-size: 0.8rem;
           text-transform: uppercase;
           backdrop-filter: blur(10px);
@@ -214,16 +301,22 @@ export default function Browse() {
         .image-container {
           position: relative;
           overflow: hidden;
-          height: 240px;
-          border-radius: 20px 20px 0 0;
+          aspect-ratio: 4 / 3;
+          height: auto;
+          border-radius: 12px 12px 0 0;
+          background: #f4f6fb;
         }
         
         .image-container img {
-          transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+          transition: transform 0.2s ease;
+          background: #f4f6fb;
         }
         
         .card-hover-3d:hover .image-container img {
-          transform: scale(1.15);
+          transform: scale(1.02);
         }
         
         .image-overlay {
@@ -232,7 +325,7 @@ export default function Browse() {
           left: 0;
           right: 0;
           bottom: 0;
-          background: linear-gradient(to top, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.3) 50%, transparent 100%);
+          background: linear-gradient(to top, rgba(17, 24, 39, 0.42) 0%, rgba(17, 24, 39, 0.08) 55%, transparent 100%);
           opacity: 0;
           transition: opacity 0.4s ease;
         }
@@ -254,11 +347,61 @@ export default function Browse() {
           border: none;
           border-radius: 15px;
           font-weight: 600;
-          box-shadow: 0 8px 25px rgba(102, 126, 234, 0.3);
+          box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
           z-index: 2;
           display: flex;
           align-items: center;
           gap: 8px;
+        }
+
+        .browse-page-shell {
+          max-width: 1180px;
+          overflow-x: clip;
+          overflow-y: visible;
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+        }
+
+        .browse-grid {
+          --bs-gutter-x: 0.85rem;
+          --bs-gutter-y: 0.85rem;
+        }
+
+        .browse-page-shell .row {
+          margin-left: 0 !important;
+          margin-right: 0 !important;
+        }
+
+        .browse-page-shell > .fade-in,
+        .browse-page-shell > .browse-filter-panel,
+        .browse-page-shell > .browse-hero {
+          margin-left: 0;
+          margin-right: 0;
+        }
+
+        .browse-card-body {
+          gap: 0.35rem;
+          min-height: 132px;
+        }
+
+        .browse-card-meta {
+          min-width: 0;
+        }
+
+        .browse-filter-row > * {
+          min-width: 0;
+        }
+
+        .browse-filter-row .form-select,
+        .browse-filter-row .form-control {
+          width: 100%;
+          min-width: 0;
+        }
+
+        .modal-contact-line {
+          min-width: 0;
+          overflow-wrap: anywhere;
+          word-break: break-word;
         }
         
         .card-hover-3d:hover .view-details-btn {
@@ -267,21 +410,21 @@ export default function Browse() {
         }
         
         .search-input:focus-within {
-          border-color: #667eea;
-          box-shadow: 0 0 0 0.3rem rgba(102, 126, 234, 0.15) !important;
+          border-color: #2563eb;
+          box-shadow: 0 0 0 0.3rem rgba(37, 99, 235, 0.15) !important;
           transform: translateY(-2px);
         }
         
         .form-select, .form-control {
           border-radius: 12px !important;
-          border: 2px solid rgba(102, 126, 234, 0.1);
+          border: 2px solid rgba(37, 99, 235, 0.1);
           padding: 12px 16px;
           transition: all 0.3s ease;
         }
         
         .form-select:focus, .form-control:focus {
-          border-color: #667eea;
-          box-shadow: 0 0 0 0.3rem rgba(102, 126, 234, 0.15) !important;
+          border-color: #2563eb;
+          box-shadow: 0 0 0 0.3rem rgba(37, 99, 235, 0.15) !important;
         }
         
         .filter-label {
@@ -293,31 +436,35 @@ export default function Browse() {
           gap: 8px;
         }
         
-        .modal-backdrop {
+        .browse-modal-backdrop {
           position: fixed;
           top: 0;
           left: 0;
           width: 100%;
-          height: 100%;
-          background-color: rgba(102, 126, 234, 0.5);
+          height: 100dvh;
+          background-color: rgba(37, 99, 235, 0.5);
           backdrop-filter: blur(4px);
           display: flex;
           align-items: center;
           justify-content: center;
           z-index: 1050;
           padding: 20px;
+          overflow: hidden;
+          overscroll-behavior: contain;
         }
         
-        .modal-content {
+        .browse-modal-content {
           background: white;
-          border-radius: 25px;
+          border-radius: 16px;
           overflow: hidden;
-          box-shadow: 0 30px 60px rgba(102, 126, 234, 0.3);
-          max-width: 800px;
+          box-shadow: 0 30px 60px rgba(37, 99, 235, 0.3);
+          max-width: 420px;
           width: 100%;
-          max-height: 90vh;
-          overflow-y: auto;
+          max-height: min(90vh, calc(100dvh - 40px));
+          display: flex;
+          flex-direction: column;
           animation: modalSlideIn 0.3s ease-out;
+          touch-action: auto;
         }
         
         @keyframes modalSlideIn {
@@ -331,22 +478,48 @@ export default function Browse() {
           }
         }
         
-        .modal-header {
+        .browse-modal-header {
           background: var(--primary-gradient);
           color: white;
-          padding: 25px 30px;
-          position: relative;
+          padding: 14px 44px 14px 14px;
+          position: sticky;
+          top: 0;
+          z-index: 3;
+          min-height: 54px;
+          flex-shrink: 0;
+        }
+
+        .browse-modal-status-badge {
+          flex-shrink: 0;
+          font-size: 0.62rem;
+          font-weight: 700;
+          letter-spacing: 0;
+          border-radius: 6px;
+          padding: 4px 8px;
+        }
+
+        .browse-modal-title {
+          min-width: 0;
+          line-height: 1.25;
+        }
+
+        .browse-modal-title-text {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+          text-align: left;
         }
         
-        .modal-close-btn {
+        .browse-modal-close-btn {
           position: absolute;
-          top: 20px;
-          right: 20px;
+          top: 10px;
+          right: 10px;
           background: rgba(255, 255, 255, 0.2);
           border: none;
           color: white;
-          width: 40px;
-          height: 40px;
+          width: 34px;
+          height: 34px;
           border-radius: 50%;
           display: flex;
           align-items: center;
@@ -354,20 +527,49 @@ export default function Browse() {
           cursor: pointer;
           transition: all 0.3s ease;
         }
+
+        .browse-modal-body {
+          overflow-y: auto;
+          -webkit-overflow-scrolling: touch;
+          overscroll-behavior: contain;
+          touch-action: pan-y;
+          flex: 1 1 auto;
+          min-height: 0;
+        }
+
+        .browse-modal-footer {
+          flex-shrink: 0;
+          background: #fff;
+          position: sticky;
+          bottom: 0;
+          z-index: 2;
+        }
+
+        .modal-detail-card {
+          border: 1px solid rgba(37, 99, 235, 0.1);
+          border-radius: 10px;
+          background: #fff;
+          padding: 10px;
+        }
+
+        .modal-detail-grid {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 8px;
+        }
         
-        .modal-close-btn:hover {
+        .browse-modal-close-btn:hover {
           background: rgba(255, 255, 255, 0.3);
           transform: rotate(90deg);
         }
         
-        .modal-title {
+        .browse-modal-title {
           font-weight: 700;
-          font-size: 1.5rem;
           margin: 0;
         }
         
-        .modal-body {
-          padding: 30px;
+        .browse-modal-body {
+          padding: 14px;
         }
         
         .detail-label {
@@ -375,8 +577,8 @@ export default function Browse() {
           font-weight: 600;
           font-size: 0.9rem;
           text-transform: uppercase;
-          letter-spacing: 0.5px;
-          margin-bottom: 5px;
+          letter-spacing: 0;
+          margin-bottom: 3px;
         }
         
         .detail-value {
@@ -387,18 +589,27 @@ export default function Browse() {
         }
         
         .item-image-modal {
-          border-radius: 15px;
+          border-radius: 10px;
           overflow: hidden;
-          box-shadow: 0 15px 35px rgba(102, 126, 234, 0.1);
-          margin-bottom: 25px;
+          box-shadow: 0 8px 20px rgba(37, 99, 235, 0.08);
+          margin-bottom: 10px;
+          background: #f4f6fb;
+        }
+
+        .item-image-modal img {
+          display: block;
+          width: 100%;
+          max-height: 320px;
+          object-fit: contain;
+          background: #f4f6fb;
         }
         
         .contact-info {
-          background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+          background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(20, 184, 166, 0.05) 100%);
           border-radius: 15px;
           padding: 20px;
           margin-top: 20px;
-          border: 1px solid rgba(102, 126, 234, 0.1);
+          border: 1px solid rgba(37, 99, 235, 0.1);
         }
         
         .fade-in {
@@ -441,7 +652,7 @@ export default function Browse() {
         }
         
         .loading-shimmer {
-          background: linear-gradient(90deg, rgba(102, 126, 234, 0.1) 25%, rgba(118, 75, 162, 0.1) 50%, rgba(102, 126, 234, 0.1) 75%);
+          background: linear-gradient(90deg, rgba(37, 99, 235, 0.1) 25%, rgba(20, 184, 166, 0.1) 50%, rgba(37, 99, 235, 0.1) 75%);
           background-size: 200% 100%;
           animation: shimmer 1.5s infinite;
         }
@@ -451,9 +662,9 @@ export default function Browse() {
           100% { background-position: 200% 0; }
         }
         
-        .modal-footer {
-          padding: 20px 30px;
-          border-top: 1px solid rgba(102, 126, 234, 0.1);
+        .browse-modal-footer {
+          padding: 10px 12px;
+          border-top: 1px solid rgba(37, 99, 235, 0.1);
           display: flex;
           justify-content: flex-end;
           gap: 10px;
@@ -484,7 +695,7 @@ export default function Browse() {
         
         .btn-primary:hover {
           transform: translateY(-2px);
-          box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+          box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
         }
         
         .text-primary {
@@ -509,7 +720,7 @@ export default function Browse() {
           display: flex;
           align-items: center;
           justify-content: center;
-          background: rgba(102, 126, 234, 0.1);
+          background: rgba(37, 99, 235, 0.1);
           color: var(--primary-color);
           margin-right: 12px;
         }
@@ -573,7 +784,8 @@ export default function Browse() {
           }
           
           .image-container {
-            height: 120px !important;
+            aspect-ratio: 4 / 3;
+            height: auto !important;
             border-radius: 10px 10px 0 0 !important;
           }
           
@@ -603,30 +815,28 @@ export default function Browse() {
             height: 10px !important;
           }
           
-          .modal-content {
-            margin: 8px !important;
-            max-height: calc(100vh - 16px) !important;
-            border-radius: 12px !important;
+          .browse-modal-content {
+            width: min(100%, 390px) !important;
+            max-height: calc(100dvh - 18px) !important;
+            margin: 0 !important;
+            border-radius: 14px !important;
           }
           
-          .modal-header {
+          .browse-modal-header {
+            padding: 12px 44px 12px 12px !important;
+            min-height: 52px;
+          }
+          
+          .browse-modal-title {
+            font-size: 0.88rem !important;
+          }
+          
+          .browse-modal-body {
             padding: 12px !important;
           }
           
-          .modal-title {
-            font-size: 1rem !important;
-          }
-          
-          .modal-body {
-            padding: 12px !important;
-          }
-          
-          .modal-body .row {
-            flex-direction: column;
-          }
-          
-          .modal-body .col-md-6 {
-            width: 100%;
+          .modal-detail-grid {
+            grid-template-columns: 1fr;
           }
           
           .detail-label {
@@ -645,7 +855,7 @@ export default function Browse() {
           
           .item-image-modal img {
             height: 180px !important;
-            object-fit: cover !important;
+            object-fit: contain !important;
             width: 100% !important;
           }
           
@@ -654,18 +864,18 @@ export default function Browse() {
             border-radius: 10px !important;
           }
           
-          .modal-footer {
+          .browse-modal-footer {
             padding: 10px 12px !important;
           }
           
-          .modal-footer .btn {
+          .browse-modal-footer .btn {
             padding: 8px 14px !important;
             font-size: 0.8rem !important;
           }
         }
         
         @media (max-width: 576px) {
-          .container {
+          .browse-page-shell {
             padding-left: 8px !important;
             padding-right: 8px !important;
           }
@@ -703,9 +913,16 @@ export default function Browse() {
           .glass-effect .row {
             gap: 0.5rem !important;
           }
+
+          .browse-filter-row {
+            --bs-gutter-x: 0.5rem;
+            --bs-gutter-y: 0.55rem;
+            gap: 0 !important;
+          }
           
           .image-container {
-            height: 100px !important;
+            aspect-ratio: 4 / 3;
+            height: auto !important;
           }
           
           .type-badge {
@@ -718,6 +935,25 @@ export default function Browse() {
             padding: 6px 12px !important;
             font-size: 0.68rem !important;
             border-radius: 10px !important;
+          }
+
+          .browse-modal-backdrop {
+            align-items: flex-end;
+            padding: 8px !important;
+          }
+
+          .browse-modal-content {
+            width: 100% !important;
+            max-width: none !important;
+            max-height: calc(100dvh - 16px) !important;
+            border-radius: 16px 16px 10px 10px !important;
+          }
+
+          .browse-modal-close-btn {
+            width: 32px !important;
+            height: 32px !important;
+            top: 10px !important;
+            right: 10px !important;
           }
           
           /* 2 column grid on mobile */
@@ -739,7 +975,7 @@ export default function Browse() {
         @media (hover: none) {
           .card-hover-3d:hover {
             transform: none;
-            box-shadow: 0 4px 16px rgba(102, 126, 234, 0.08) !important;
+            box-shadow: 0 4px 16px rgba(37, 99, 235, 0.08) !important;
           }
           
           .card-hover-3d:active {
@@ -759,6 +995,127 @@ export default function Browse() {
             opacity: 0.3 !important;
           }
         }
+
+        .browse-page-shell {
+          color: var(--browse-ink);
+        }
+
+        .browse-grid {
+          --bs-gutter-x: 0.9rem;
+          --bs-gutter-y: 0.9rem;
+        }
+
+        .browse-page-shell .item-card {
+          border: 1px solid var(--browse-border) !important;
+          border-radius: 8px !important;
+          box-shadow: 0 10px 28px rgba(15, 23, 42, 0.06) !important;
+          background: #fff;
+        }
+
+        .browse-page-shell .item-card:hover {
+          box-shadow: 0 16px 34px rgba(15, 23, 42, 0.11) !important;
+        }
+
+        .browse-page-shell .card-title {
+          color: var(--browse-ink) !important;
+          font-size: 0.88rem !important;
+          line-height: 1.25;
+        }
+
+        .browse-page-shell .card-text {
+          color: var(--browse-muted) !important;
+          line-height: 1.4 !important;
+        }
+
+        .browse-page-shell .image-container {
+          background: #f8fafc;
+          border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+          border-radius: 8px 8px 0 0 !important;
+        }
+
+        .browse-page-shell .image-container img {
+          background: #f8fafc;
+          padding: 6px;
+        }
+
+        .browse-page-shell .type-badge {
+          box-shadow: none !important;
+          border-radius: 999px !important;
+          letter-spacing: 0 !important;
+        }
+
+        .browse-filter-panel .form-control,
+        .browse-filter-panel .form-select,
+        .browse-filter-panel .input-group-text {
+          border-color: #dbe4f0 !important;
+          background-color: #fff;
+        }
+
+        .browse-filter-panel .form-control,
+        .browse-filter-panel .form-select {
+          min-height: 38px;
+        }
+
+        .filter-label {
+          color: #334155;
+          letter-spacing: 0;
+        }
+
+        .browse-modal-backdrop {
+          background: rgba(15, 23, 42, 0.55);
+        }
+
+        .browse-modal-content {
+          border-radius: 8px;
+          border: 1px solid rgba(255, 255, 255, 0.22);
+          box-shadow: 0 24px 60px rgba(15, 23, 42, 0.28);
+        }
+
+        .browse-modal-header {
+          background: linear-gradient(135deg, #0f172a 0%, #0f766e 100%);
+        }
+
+        .browse-modal-body {
+          background: #f8fafc;
+        }
+
+        .browse-modal-body .modal-detail-card,
+        .browse-modal-body .contact-info {
+          border-color: rgba(15, 23, 42, 0.08);
+          box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
+        }
+
+        .browse-modal-footer {
+          background: #fff;
+        }
+
+        @media (max-width: 576px) {
+          .browse-page-shell {
+            padding-left: 8px;
+            padding-right: 8px;
+          }
+
+          .browse-stats {
+            gap: 6px;
+          }
+
+          .browse-stat {
+            padding: 8px;
+          }
+
+          .browse-stat-value {
+            font-size: 1rem;
+          }
+
+          .browse-grid {
+            --bs-gutter-x: 0.55rem;
+            --bs-gutter-y: 0.65rem;
+          }
+
+          .browse-card-body {
+            min-height: 118px;
+          }
+        }
         
         /* Image click to expand */
         .clickable-image {
@@ -766,38 +1123,38 @@ export default function Browse() {
         }
       `}</style>
 
-      <div className="container py-3 fade-in">
-        <div className="gradient-bg text-white rounded-3 p-3 mb-3 shadow-lg position-relative overflow-hidden">
+      <div className="container browse-page-shell py-4 fade-in">
+        <div className="browse-hero text-white rounded-3 p-3 p-md-4 mb-3 position-relative overflow-hidden">
           <div className="position-relative z-2">
             <h1 className="h4 fw-bold mb-2">GCUF Lost & Found Hub</h1>
             <p className="small mb-3 opacity-90">
               Report lost items and return found belongings on campus.
             </p>
 
-            <div className="d-flex gap-2 flex-wrap">
-              <div className="stat-card text-dark rounded-2 p-2 flex-grow-1" style={{ minWidth: '80px' }}>
-                <div className="h5 fw-bold text-gradient mb-0">{items.length}</div>
-                <div className="small text-muted" style={{ fontSize: '0.65rem' }}>Total</div>
+            <div className="browse-stats">
+              <div className="browse-stat">
+                <div className="browse-stat-value">{items.length}</div>
+                <div className="browse-stat-label">Total</div>
               </div>
-              <div className="stat-card text-dark rounded-2 p-2 flex-grow-1" style={{ minWidth: '80px' }}>
-                <div className="h5 fw-bold text-gradient mb-0">
+              <div className="browse-stat">
+                <div className="browse-stat-value">
                   {items.filter(i => i.type === 'found').length}
                 </div>
-                <div className="small text-muted" style={{ fontSize: '0.65rem' }}>Found</div>
+                <div className="browse-stat-label">Found</div>
               </div>
-              <div className="stat-card text-dark rounded-2 p-2 flex-grow-1" style={{ minWidth: '80px' }}>
-                <div className="h5 fw-bold text-gradient mb-0">
+              <div className="browse-stat">
+                <div className="browse-stat-value">
                   {items.filter(i => i.type === 'lost').length}
                 </div>
-                <div className="small text-muted" style={{ fontSize: '0.65rem' }}>Lost</div>
+                <div className="browse-stat-label">Lost</div>
               </div>
             </div>
           </div>
         </div>
 
 
-        <div className="glass-effect rounded-3 p-3 mb-3">
-          <div className="row g-2 align-items-end">
+        <div className="browse-filter-panel rounded-3 p-3 mb-3">
+          <div className="row g-2 align-items-end browse-filter-row">
             <div className="col-12 col-md-4">
               <label className="filter-label small"><FaSearch size={10} /> Search</label>
               <div className="input-group input-group-sm search-input">
@@ -809,7 +1166,10 @@ export default function Browse() {
                   className="form-control border-start-0 py-1"
                   placeholder="Search items..."
                   value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
+                  onChange={(e) => {
+                    setSearchQuery(e.target.value);
+                    setVisibleCount(24);
+                  }}
                   style={{ fontSize: '0.8rem' }}
                 />
               </div>
@@ -819,7 +1179,10 @@ export default function Browse() {
               <label className="filter-label small"><FaFilter size={10} /> Type</label>
               <select
                 value={typeFilter}
-                onChange={(e) => setTypeFilter(e.target.value)}
+                onChange={(e) => {
+                  setTypeFilter(e.target.value);
+                  setVisibleCount(24);
+                }}
                 className="form-select form-select-sm py-1"
                 style={{ fontSize: '0.75rem' }}
               >
@@ -833,9 +1196,12 @@ export default function Browse() {
               <label className="filter-label small">Category</label>
               <select
                 value={categoryFilter}
-                onChange={(e) => setCategoryFilter(e.target.value)}
+                onChange={(e) => {
+                  setCategoryFilter(e.target.value);
+                  setVisibleCount(24);
+                }}
                 className="form-select form-select-sm py-1"
-                style={{ fontSize: '0.75rem', minWidth: '124px', paddingRight: '1.9rem' }}
+                style={{ fontSize: '0.75rem', paddingRight: '1.9rem' }}
               >
                 <option value="all">All</option>
                 <option value="electronics">Electronics</option>
@@ -853,9 +1219,12 @@ export default function Browse() {
               <label className="filter-label small">Sort</label>
               <select
                 value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
+                onChange={(e) => {
+                  setSortBy(e.target.value);
+                  setVisibleCount(24);
+                }}
                 className="form-select form-select-sm py-1"
-                style={{ fontSize: '0.75rem', minWidth: '112px', paddingRight: '2rem' }}
+                style={{ fontSize: '0.75rem', paddingRight: '2rem' }}
               >
                 <option value="newest">Newest</option>
                 <option value="oldest">Oldest</option>
@@ -886,6 +1255,7 @@ export default function Browse() {
                   setSearchQuery("");
                   setTypeFilter("all");
                   setCategoryFilter("all");
+                  setVisibleCount(24);
                 }}
               >
                 Clear All Filters
@@ -894,33 +1264,30 @@ export default function Browse() {
           )}
 
           {status === "succeeded" && sortedItems.length > 0 && (
-            <div className="row g-2">
-              {sortedItems.map((item) => (
+            <div className="row browse-grid">
+              {visibleItems.map((item) => (
                 <div
                   key={item._id}
                   className="col-6 col-md-4 col-lg-3"
-                  onMouseEnter={() => setHoveredItem(item._id)}
-                  onMouseLeave={() => setHoveredItem(null)}
                 >
                   <div
-                    className="card card-hover-3d h-100 border-0 shadow-sm position-relative"
+                    className="card card-hover-3d h-100 border-0 shadow-sm position-relative item-card"
                     onClick={() => handleItemClick(item)}
                     style={{ cursor: 'pointer' }}
                   >
-                    <div className="image-container" style={{ height: '100px' }}>
+                    <div className="image-container">
                       {item.imageUrl ? (
                         <>
                           <img
                             src={item.imageUrl}
                             alt={item.title}
-                            className="w-100 h-100"
-                            style={{ objectFit: 'cover' }}
+                            loading="lazy"
                           />
                           <div className="image-overlay"></div>
                         </>
                       ) : (
                         <div className="w-100 h-100 d-flex align-items-center justify-content-center"
-                          style={{ background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%)' }}>
+                          style={{ background: 'linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(20, 184, 166, 0.1) 100%)' }}>
                           <div className="text-center" style={{ color: 'var(--primary-color)' }}>
                             <FaSearch size={20} className="opacity-50" />
                           </div>
@@ -934,13 +1301,13 @@ export default function Browse() {
                           borderRadius: '4px',
                           fontWeight: '600',
                           letterSpacing: '0.3px',
-                          boxShadow: '0 2px 8px rgba(102, 126, 234, 0.3)',
+                          boxShadow: '0 2px 8px rgba(37, 99, 235, 0.3)',
                           textTransform: 'uppercase',
                           background: item.type === "lost"
                             ? 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)'
                             : item.type === "found"
                               ? 'linear-gradient(135deg, #10b981 0%, #059669 100%)'
-                              : 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)'
+                              : 'linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)'
                         }}>
                         {item.type === "lost" ? "LOST" : item.type === "found" ? "FOUND" : "OK"}
                       </span>
@@ -950,20 +1317,20 @@ export default function Browse() {
                       </button>
                     </div>
 
-                    <div className="card-body d-flex flex-column p-2">
+                    <div className="card-body browse-card-body d-flex flex-column p-2 p-md-3">
                       <h6 className="card-title fw-bold mb-1 line-clamp-1" style={{ fontSize: '0.8rem' }}>{item.title}</h6>
                       <p className="card-text flex-grow-1 mb-2 line-clamp-2" style={{ fontSize: '0.68rem', color: '#6c757d' }}>
                         {item.description}
                       </p>
 
                       <div className="mt-auto">
-                        <div className="d-flex align-items-center mb-1" style={{ color: 'var(--secondary-color)' }}>
+                        <div className="browse-card-meta d-flex align-items-center mb-1" style={{ color: 'var(--secondary-color)' }}>
                           <FaMapMarkerAlt size={10} className="me-1" style={{ color: 'var(--primary-color)', flexShrink: 0 }} />
                           <span className="text-truncate" style={{ fontSize: '0.65rem' }}>{item.location}</span>
                         </div>
 
                         {item.date && (
-                          <div className="d-flex align-items-center" style={{ color: 'var(--secondary-color)' }}>
+                          <div className="browse-card-meta d-flex align-items-center" style={{ color: 'var(--secondary-color)' }}>
                             <FaCalendarAlt size={10} className="me-1" style={{ color: 'var(--primary-color)', flexShrink: 0 }} />
                             <span style={{ fontSize: '0.65rem' }}>
                               {new Date(item.date).toLocaleDateString('en-US', {
@@ -980,54 +1347,64 @@ export default function Browse() {
               ))}
             </div>
           )}
+
+          {status === "succeeded" && hasMoreItems && (
+            <div className="text-center mt-3">
+              <button
+                type="button"
+                className="btn btn-outline-primary btn-sm rounded-pill px-4"
+                onClick={() => setVisibleCount((count) => count + 24)}
+              >
+                Load More
+              </button>
+            </div>
+          )}
         </div>
 
 
         {showModal && selectedItem && (
-          <div className="modal-backdrop" onClick={handleCloseModal}>
-            <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{ maxWidth: '420px' }}>
-              <div className="modal-header py-2 px-3">
-                <div style={{ position: 'absolute', top: '8px', left: '12px' }}>
-                  <span className="badge px-2 py-1" style={{
+          <div className="browse-modal-backdrop" onClick={handleCloseModal}>
+            <div className="browse-modal-content" onClick={(e) => e.stopPropagation()}>
+              <div className="browse-modal-header d-flex align-items-center gap-2">
+                <span className="browse-modal-status-badge text-white" style={{
                     background: selectedItem.type === 'lost' 
                       ? 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)' 
                       : 'linear-gradient(135deg, #10b981 0%, #059669 100%)',
-                    fontSize: '0.65rem'
                   }}>
                     {selectedItem.type.toUpperCase()}
-                  </span>
-                </div>
-                <h6 className="modal-title w-100 text-center mb-0" style={{ fontSize: '0.9rem' }}>{selectedItem.title}</h6>
-                <button className="modal-close-btn" onClick={handleCloseModal} style={{ width: '28px', height: '28px', top: '8px', right: '8px' }}>
+                </span>
+                <h6 className="browse-modal-title flex-grow-1 mb-0" style={{ fontSize: '0.9rem' }}>
+                  <span className="browse-modal-title-text">{selectedItem.title}</span>
+                </h6>
+                <button className="browse-modal-close-btn" onClick={handleCloseModal}>
                   <FaTimes size={14} />
                 </button>
               </div>
 
-              <div className="modal-body p-3">
+              <div className="browse-modal-body p-3">
                 {selectedItem.imageUrl && (
                   <div className="item-image-modal mb-3" style={{ borderRadius: '8px', overflow: 'hidden' }}>
                     <img
                       src={selectedItem.imageUrl}
                       alt={selectedItem.title}
-                      style={{ width: '100%', height: '200px', objectFit: 'cover' }}
                     />
                   </div>
                 )}
 
-                <div className="mb-3">
+                <div className="modal-detail-card mb-2">
                   <div className="detail-label" style={{ fontSize: '0.65rem' }}>Description</div>
                   <div className="detail-value" style={{ fontSize: '0.8rem', marginBottom: '0' }}>{selectedItem.description}</div>
                 </div>
 
-                <div className="row g-2 mb-3">
-                  <div className="col-6">
+                <div className="modal-detail-grid mb-2">
+                  <div className="modal-detail-card">
                     <div className="detail-label" style={{ fontSize: '0.65rem' }}>Location</div>
-                    <div className="d-flex align-items-center" style={{ fontSize: '0.78rem' }}>
+                    <div className="d-flex align-items-start" style={{ fontSize: '0.78rem' }}>
                       <FaMapMarkerAlt size={10} className="me-1" style={{ color: 'var(--primary-color)' }} />
-                      {selectedItem.location}
+                      <span>{selectedItem.location}</span>
                     </div>
                   </div>
-                  <div className="col-6">
+                  <div className="modal-detail-card">
                     <div className="detail-label" style={{ fontSize: '0.65rem' }}>Date</div>
                     <div className="d-flex align-items-center" style={{ fontSize: '0.78rem' }}>
                       <FaCalendarAlt size={10} className="me-1" style={{ color: 'var(--primary-color)' }} />
@@ -1040,7 +1417,7 @@ export default function Browse() {
                   </div>
                 </div>
 
-                <div className="contact-info p-2" style={{ borderRadius: '8px' }}>
+                <div className="contact-info modal-detail-card">
                   <h6 className="mb-2 fw-bold d-flex align-items-center" style={{ color: 'var(--primary-color)', fontSize: '0.75rem' }}>
                     <FaUser size={10} className="me-1" />
                     Contact Info
@@ -1055,9 +1432,9 @@ export default function Browse() {
                     {selectedItem.user?.email && (
                       <div className="col-12">
                         <div className="detail-label" style={{ fontSize: '0.6rem' }}>Email</div>
-                        <div className="d-flex align-items-center" style={{ fontSize: '0.75rem' }}>
+                        <div className="modal-contact-line d-flex align-items-start" style={{ fontSize: '0.75rem' }}>
                           <FaEnvelope size={10} className="me-1" style={{ color: 'var(--primary-color)' }} />
-                          {selectedItem.user.email}
+                          <span>{selectedItem.user.email}</span>
                         </div>
                       </div>
                     )}
@@ -1065,7 +1442,7 @@ export default function Browse() {
                       <div className="col-12">
                         <div className="detail-label" style={{ fontSize: '0.6rem' }}>Phone</div>
                         <div className="d-flex align-items-center justify-content-between gap-2 flex-wrap">
-                          <div className="d-flex align-items-center flex-grow-1" style={{ fontSize: '0.75rem', minWidth: 0 }}>
+                          <div className="modal-contact-line d-flex align-items-center flex-grow-1" style={{ fontSize: '0.75rem', minWidth: 0 }}>
                             <FaPhone size={10} className="me-1" style={{ color: 'var(--primary-color)' }} />
                             {selectedItem.user.phone}
                           </div>
@@ -1089,7 +1466,7 @@ export default function Browse() {
                 </div>
               </div>
 
-              <div className="modal-footer py-2 px-3">
+              <div className="browse-modal-footer py-2 px-3">
                 <button
                   className="btn btn-primary btn-sm py-1 px-3"
                   onClick={handleCloseModal}
@@ -1105,3 +1482,6 @@ export default function Browse() {
     </>
   );
 }
+
+
+

@@ -196,12 +196,12 @@ export default function LostItemForm() {
         }
         
         .input-focus-effect:focus {
-          border-color: #667eea;
-          box-shadow: 0 0 0 0.25rem rgba(102, 126, 234, 0.15);
+          border-color: #2563eb;
+          box-shadow: 0 0 0 0.25rem rgba(37, 99, 235, 0.15);
         }
         
         .submit-btn {
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
           border: none;
           transition: all 0.3s ease;
           color: white;
@@ -210,20 +210,20 @@ export default function LostItemForm() {
         
         .submit-btn:hover {
           transform: translateY(-2px);
-          box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+          box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
         }
         
         .image-upload-area {
-          border: 2px dashed rgba(102, 126, 234, 0.3);
+          border: 2px dashed rgba(37, 99, 235, 0.3);
           border-radius: 12px;
           transition: all 0.3s ease;
-          background: rgba(102, 126, 234, 0.03);
+          background: rgba(37, 99, 235, 0.03);
           cursor: pointer;
         }
         
         .image-upload-area:hover {
-          background: rgba(102, 126, 234, 0.08);
-          border-color: #667eea;
+          background: rgba(37, 99, 235, 0.08);
+          border-color: #2563eb;
         }
         
         .card-hover-3d {
@@ -232,7 +232,7 @@ export default function LostItemForm() {
         
         .card-hover-3d:hover {
           transform: translateY(-5px);
-          box-shadow: 0 20px 40px rgba(102, 126, 234, 0.1) !important;
+          box-shadow: 0 20px 40px rgba(37, 99, 235, 0.1) !important;
         }
         
         .form-gradient {
@@ -241,29 +241,29 @@ export default function LostItemForm() {
         }
         
         .stat-card {
-          background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+          background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(20, 184, 166, 0.05) 100%);
           border-radius: 12px;
-          border: 1px solid rgba(102, 126, 234, 0.1);
+          border: 1px solid rgba(37, 99, 235, 0.1);
           transition: all 0.3s ease;
         }
         
         .stat-card:hover {
-          border-color: rgba(102, 126, 234, 0.3);
+          border-color: rgba(37, 99, 235, 0.3);
         }
         
         .lost-header {
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
         }
         
         .icon-gradient {
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
         }
         
         .text-gradient {
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -271,16 +271,16 @@ export default function LostItemForm() {
         
         .btn-outline-gradient {
           border:2px solid;
-          border-image: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          border-image: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
           border-image-slice: 1;
-          color: #667eea;
+          color: #2563eb;
          
           
           
         }
         
         .btn-outline-gradient:hover {
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
           color: white;
         }
         
@@ -321,7 +321,7 @@ export default function LostItemForm() {
           overflow: hidden;
           border-radius: 12px;
           background: #f8fafc;
-          border: 2px solid rgba(102, 126, 234, 0.2);
+          border: 2px solid rgba(37, 99, 235, 0.2);
         }
 
         .image-preview img {
@@ -359,8 +359,8 @@ export default function LostItemForm() {
         }
         
         .form-control:focus, .form-select:focus {
-          border-color: #667eea;
-          box-shadow: 0 0 0 0.25rem rgba(102, 126, 234, 0.15);
+          border-color: #2563eb;
+          box-shadow: 0 0 0 0.25rem rgba(37, 99, 235, 0.15);
         }
         
         .alert-success {
@@ -376,7 +376,7 @@ export default function LostItemForm() {
         }
         
         .lost-icon-bg {
-          background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+          background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(20, 184, 166, 0.1) 100%);
         }
         
         /* Mobile Responsive Styles - COMPACT */
@@ -567,7 +567,7 @@ export default function LostItemForm() {
               <div className="card shadow-sm border-0 mb-4 stat-card">
                 <div className="card-body p-4">
                   <div className="d-flex align-items-center">
-                    <div className="rounded-circle p-2 me-3" style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}>
+                    <div className="rounded-circle p-2 me-3" style={{ background: 'linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)' }}>
                       <FaUser size={20} className="text-white" />
                     </div>
                     <div>
@@ -616,7 +616,7 @@ export default function LostItemForm() {
                 
                   <div className="mb-4">
                     <label htmlFor="title" className="form-label d-flex align-items-center mb-2">
-                      <FaTag className="me-2" style={{ color: '#667eea' }} />
+                      <FaTag className="me-2" style={{ color: '#2563eb' }} />
                       Item Title <span className="text-danger ms-1">*</span>
                     </label>
                     <input
@@ -640,7 +640,7 @@ export default function LostItemForm() {
                 
                   <div className="mb-4">
                     <label htmlFor="description" className="form-label d-flex align-items-center mb-2">
-                      <FaInfoCircle className="me-2" style={{ color: '#667eea' }} />
+                      <FaInfoCircle className="me-2" style={{ color: '#2563eb' }} />
                       Description <span className="text-danger ms-1">*</span>
                     </label>
                     <textarea
@@ -665,7 +665,7 @@ export default function LostItemForm() {
                 
                     <div className="col-md-6">
                       <label htmlFor="category" className="form-label d-flex align-items-center mb-2">
-                        <FaTag className="me-2" style={{ color: '#667eea' }} />
+                        <FaTag className="me-2" style={{ color: '#2563eb' }} />
                         Category <span className="text-danger ms-1">*</span>
                       </label>
                       <select
@@ -697,7 +697,7 @@ export default function LostItemForm() {
                    
                     <div className="col-md-6">
                       <label htmlFor="location" className="form-label d-flex align-items-center mb-2">
-                        <FaMapMarkerAlt className="me-2" style={{ color: '#667eea' }} />
+                        <FaMapMarkerAlt className="me-2" style={{ color: '#2563eb' }} />
                         Location <span className="text-danger ms-1">*</span>
                       </label>
                       <input
@@ -722,7 +722,7 @@ export default function LostItemForm() {
                 
                   <div className="mb-4">
                     <label className="form-label d-flex align-items-center mb-2">
-                      <FaCamera className="me-2" style={{ color: '#667eea' }} />
+                      <FaCamera className="me-2" style={{ color: '#2563eb' }} />
                       Item Photo (Optional)
                     </label>
                     
@@ -749,7 +749,7 @@ export default function LostItemForm() {
                         className="image-upload-area text-center p-3 mb-2 rounded-3"
                         onClick={() => fileInputRef.current?.click()}
                       >
-                        <FaUpload size={20} className="mb-2" style={{ color: '#667eea' }} />
+                        <FaUpload size={20} className="mb-2" style={{ color: '#2563eb' }} />
                         <p className="image-upload-title mb-1 fw-semibold">Tap to upload photo</p>
                         <p className="image-upload-hint text-muted mb-0">PNG, JPG up to 5MB</p>
                       </div>
@@ -837,3 +837,5 @@ export default function LostItemForm() {
     </>
   );
 }
+
+
