@@ -1,0 +1,27 @@
+{
+  "name": "GCUF Lost & Found Portal",
+  "short_name": "Lost & Found",
+  "description": "University Lost & Found Portal - Report and find lost items on campus",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#667eea",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "/images/L.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/images/L.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["utilities", "education"],
+  "screenshots": [],
+  "prefer_related_applications": false
+}
