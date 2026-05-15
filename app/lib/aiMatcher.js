@@ -1,4 +1,5 @@
 import Item from "@/app/models/items";
+import User from "@/app/models/user";
 import { sendMatchEmail } from "@/app/lib/sendEmail";
 
 const DEFAULT_MODEL = "Xenova/all-MiniLM-L6-v2";
