@@ -3,7 +3,32 @@ import { sendMatchEmail } from "@/app/lib/sendEmail";
 
 const DEFAULT_MODEL = "Xenova/all-MiniLM-L6-v2";
 const DEFAULT_HF_API_MODEL = "sentence-transformers/all-MiniLM-L6-v2";
-const DEFAULT_THRESHOLD = 0.4;
+const DEFAULT_THRESHOLD = 0.5;
+const STOP_WORDS = new Set([
+  "a",
+  "an",
+  "and",
+  "are",
+  "at",
+  "by",
+  "for",
+  "found",
+  "from",
+  "in",
+  "is",
+  "it",
+  "item",
+  "lost",
+  "my",
+  "near",
+  "of",
+  "on",
+  "or",
+  "the",
+  "this",
+  "to",
+  "with",
+]);
 
 let extractorPromise;
 
@@ -32,6 +57,18 @@ async function getExtractor() {
 
 function getHuggingFaceToken() {
   return process.env.HF_API_TOKEN || process.env.HUGGINGFACEHUB_API_TOKEN;
+}
+
+function shouldUseLocalEmbeddings() {
+  if (process.env.HF_USE_LOCAL_EMBEDDINGS === "true") {
+    return true;
+  }
+
+  if (process.env.HF_USE_LOCAL_EMBEDDINGS === "false") {
+    return false;
+  }
+
+  return process.env.VERCEL !== "1";
 }
 
 function averageVectors(vectors) {
@@ -128,6 +165,51 @@ function normalizeText(value) {
     .trim();
 }
 
+function tokenize(value) {
+  return normalizeText(value)
+    .replace(/[^a-z0-9\s]/g, " ")
+    .split(/\s+/)
+    .filter((word) => word.length > 2 && !STOP_WORDS.has(word));
+}
+
+function tokenOverlapScore(firstValue, secondValue) {
+  const firstTokens = new Set(tokenize(firstValue));
+  const secondTokens = new Set(tokenize(secondValue));
+
+  if (!firstTokens.size || !secondTokens.size) {
+    return 0;
+  }
+
+  let overlap = 0;
+
+  for (const token of firstTokens) {
+    if (secondTokens.has(token)) {
+      overlap += 1;
+    }
+  }
+
+  return overlap / Math.max(firstTokens.size, secondTokens.size);
+}
+
+function textIncludesScore(firstValue, secondValue) {
+  const firstText = normalizeText(firstValue);
+  const secondText = normalizeText(secondValue);
+
+  if (!firstText || !secondText) {
+    return 0;
+  }
+
+  if (firstText === secondText) {
+    return 1;
+  }
+
+  if (firstText.includes(secondText) || secondText.includes(firstText)) {
+    return 0.75;
+  }
+
+  return 0;
+}
+
 export function getItemMatchText(item) {
   return [
     `name: ${normalizeText(item.title)}`,
@@ -153,6 +235,10 @@ export async function createItemEmbedding(item) {
     }
   } catch (error) {
     console.error("Hugging Face API embedding failed:", error);
+  }
+
+  if (!shouldUseLocalEmbeddings()) {
+    return [];
   }
 
   const extractor = await getExtractor();
@@ -210,16 +296,31 @@ async function ensureEmbedding(item) {
 }
 
 function calculateWeightedScore(lostItem, foundItem) {
-  let score = cosineSimilarity(lostItem.embedding, foundItem.embedding);
+  const embeddingScore = cosineSimilarity(lostItem.embedding, foundItem.embedding);
+  let textScore = 0;
 
   if (
     normalizeText(lostItem.category) &&
     normalizeText(lostItem.category) === normalizeText(foundItem.category)
   ) {
-    score += 0.05;
+    textScore += 0.25;
   }
 
-  return Math.min(score, 1);
+  textScore += Math.max(
+    textIncludesScore(lostItem.title, foundItem.title),
+    tokenOverlapScore(lostItem.title, foundItem.title)
+  ) * 0.35;
+  textScore += tokenOverlapScore(lostItem.description, foundItem.description) * 0.2;
+  textScore += Math.max(
+    textIncludesScore(lostItem.location, foundItem.location),
+    tokenOverlapScore(lostItem.location, foundItem.location)
+  ) * 0.15;
+  textScore += tokenOverlapScore(
+    `${lostItem.title} ${lostItem.description}`,
+    `${foundItem.title} ${foundItem.description}`
+  ) * 0.05;
+
+  return Math.min(Math.max(embeddingScore, textScore), 1);
 }
 
 async function notifyLostUser(lostItem, foundItem, score) {

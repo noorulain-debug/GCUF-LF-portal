@@ -83,7 +83,9 @@ export async function POST(req) {
       embedding: await tryCreateItemEmbedding(itemData),
     });
 
-    await findAndNotifyMatches(newItem);
+    findAndNotifyMatches(newItem).catch((error) => {
+      console.error("Post-save AI matching failed:", error);
+    });
 
     const responseItem = await Item.findById(newItem._id)
       .select("-embedding")
