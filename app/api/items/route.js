@@ -1,6 +1,7 @@
 import jwt from "jsonwebtoken";
 import { connectDB } from "@/app/lib/mongodb";
 import Item from "@/app/models/items";
+import User from "@/app/models/user";
 import { cookies } from "next/headers";
 import {
   findAndNotifyMatches,

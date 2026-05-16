@@ -85,12 +85,12 @@ export default function Navbar() {
         }
         
         .nav-gradient {
-          background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
           transition: all 0.3s ease;
         }
         
         .nav-scrolled {
-          background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%) !important;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
           backdrop-filter: blur(10px);
           border-bottom: 1px solid rgba(255, 255, 255, 0.1);
           box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
@@ -123,7 +123,7 @@ export default function Navbar() {
           box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15);
           border-radius: 16px;
           overflow: hidden;
-          background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         }
         
         .profile-dropdown .dropdown-item {
@@ -172,8 +172,8 @@ export default function Navbar() {
           }
           
           .navbar-brand img {
-            width: 70px !important;
-            height: 46px !important;
+            width: 75px !important;
+            height: 45px !important;
           }
           
           .nav-content {
@@ -188,8 +188,8 @@ export default function Navbar() {
           }
           
           .navbar-brand img {
-            width: 48px !important;
-            height: 44px !important;
+            width: 75px !important;
+            height: 45px !important;
           }
           
           .mobile-menu-dropdown {
@@ -321,7 +321,7 @@ export default function Navbar() {
               <img
                 src="/images/L.png"
                 alt="Lost & Found Logo"
-                style={{ width: "90px", height: "84px" }} // smaller for mobile
+                style={{ width: "130px", height: "84px" }} // smaller for mobile
                 className="me-2 logo-glow"
               />
             </div>
@@ -464,7 +464,7 @@ export default function Navbar() {
           {isProfileOpen && (
             <div className="d-lg-none position-absolute top-100 bg-white shadow-lg mobile-menu-dropdown mobile-profile-dropdown" style={{ zIndex: 1040 }}>
               <div className="d-flex flex-column">
-                <div className="p-4 border-bottom mobile-profile-header" style={{ background: 'linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)' }}>
+                <div className="p-4 border-bottom mobile-profile-header" style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}>
                   <div className="d-flex align-items-center text-white">
                     <div className="bg-white text-primary rounded-circle p-2 me-3 mobile-profile-avatar">
                       <FaUserCircle size={24} />

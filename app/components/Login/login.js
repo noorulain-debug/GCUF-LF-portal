@@ -75,7 +75,7 @@ export default function ProfessionalLogin() {
     <>
       <style jsx global>{`
         .login-gradient-bg {
-          background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
           min-height: 100vh;
           position: relative;
           overflow: hidden;
@@ -121,7 +121,7 @@ export default function ProfessionalLogin() {
         }
         
         .login-input:focus {
-          border-color: #2563eb;
+          border-color: #667eea;
           box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
           outline: none;
         }
@@ -129,11 +129,11 @@ export default function ProfessionalLogin() {
         .login-input-icon {
           border: 2px solid rgba(37, 99, 235, 0.1);
           background: rgba(255, 255, 255, 0.9);
-          color: #2563eb;
+          color: #667eea;
         }
         
         .login-btn {
-          background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
           border: none;
           border-radius: 12px;
           padding: 10px;
@@ -153,21 +153,21 @@ export default function ProfessionalLogin() {
         }
         
         .form-check-input:checked {
-          background-color: #2563eb;
-          border-color: #2563eb;
+          background-color: #667eea;
+          border-color: #667eea;
         }
         
         .form-check-input:focus {
-          border-color: #2563eb;
+          border-color: #667eea;
           box-shadow: 0 0 0 0.25rem rgba(37, 99, 235, 0.25);
         }
         
         .text-primary {
-          color: #2563eb !important;
+          color: #667eea !important;
         }
         
         .text-secondary {
-          color: #0f766e !important;
+          color: #764ba2 !important;
         }
         
         .fade-in {
@@ -192,12 +192,12 @@ export default function ProfessionalLogin() {
         .password-toggle-btn {
           background: rgba(255, 255, 255, 0.9) !important;
           border: 2px solid rgba(37, 99, 235, 0.1) !important;
-          color: #2563eb !important;
+          color: #667eea !important;
         }
         
         .password-toggle-btn:hover {
           background: rgba(37, 99, 235, 0.05) !important;
-          border-color: #2563eb !important;
+          border-color: #667eea !important;
         }
         
         /* Mobile Responsive Styles - COMPACT */
@@ -281,7 +281,7 @@ export default function ProfessionalLogin() {
                
                 <form onSubmit={login}>
                   <div className="mb-3">
-                    <label htmlFor="email" className="form-label fw-medium d-flex align-items-center" style={{ color: '#2563eb' }}>
+                    <label htmlFor="email" className="form-label fw-medium d-flex align-items-center" style={{ color: '#667eea' }}>
                       <FaEnvelope className="me-2" size={14} />
                       Email Address
                     </label>
@@ -313,7 +313,7 @@ export default function ProfessionalLogin() {
                   </div>
                   
                   <div className="mb-3">
-                    <label htmlFor="password" className="form-label fw-medium d-flex align-items-center" style={{ color: '#2563eb' }}>
+                    <label htmlFor="password" className="form-label fw-medium d-flex align-items-center" style={{ color: '#667eea' }}>
                       <FaLock className="me-2" size={14} />
                       Password
                     </label>
@@ -351,7 +351,7 @@ export default function ProfessionalLogin() {
                         checked={rememberMe}
                         onChange={(e) => setRememberMe(e.target.checked)}
                       />
-                      <label className="form-check-label" htmlFor="rememberMe" style={{ color: '#0f766e' }}>
+                      <label className="form-check-label" htmlFor="rememberMe" style={{ color: '#764ba2' }}>
                         Remember me on this device
                       </label>
                     </div>
@@ -373,9 +373,9 @@ export default function ProfessionalLogin() {
                   </button>
 
                   <div className="text-center mt-3">
-                    <p className="mb-2" style={{ color: '#0f766e' }}>
+                    <p className="mb-2" style={{ color: '#764ba2' }}>
                       Don&apos;t have an account?{" "}
-                      <a href="/signup" className="fw-bold text-decoration-none" style={{ color: '#2563eb' }}>
+                      <a href="/signup" className="fw-bold text-decoration-none" style={{ color: '#667eea' }}>
                         Sign up
                       </a>
                     </p>

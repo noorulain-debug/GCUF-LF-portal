@@ -363,9 +363,9 @@ export default function AdminDashboard() {
     switch (type) {
       case "lost":
         return {
-          bg: "#2563eb",
+          bg: "#667eea",
           light: "rgba(37, 99, 235, 0.1)",
-          gradient: "linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)",
+          gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
         };
       case "found":
         return {
@@ -381,9 +381,9 @@ export default function AdminDashboard() {
         };
       default:
         return {
-          bg: "#2563eb",
+          bg: "#667eea",
           light: "rgba(37, 99, 235, 0.1)",
-          gradient: "linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)",
+          gradient: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
         };
     }
   };
@@ -399,7 +399,7 @@ export default function AdminDashboard() {
 
     return {
       bg: "rgba(37, 99, 235, 0.1)",
-      color: "#2563eb",
+      color: "#667eea",
       label: "User",
     };
   };
@@ -410,14 +410,14 @@ export default function AdminDashboard() {
         <div className="text-center py-5">
           <div
             className="spinner-border"
-            style={{ width: "3rem", height: "3rem", color: "#2563eb" }}
+            style={{ width: "3rem", height: "3rem", color: "#667eea" }}
             role="status"
           >
             <span className="visually-hidden">
               Checking admin permissions...
             </span>
           </div>
-          <p className="mt-3" style={{ color: "#0f766e" }}>
+          <p className="mt-3" style={{ color: "#764ba2" }}>
             Verifying admin access...
           </p>
         </div>
@@ -431,12 +431,12 @@ export default function AdminDashboard() {
         <div className="text-center py-5">
           <div
             className="spinner-border"
-            style={{ width: "3rem", height: "3rem", color: "#2563eb" }}
+            style={{ width: "3rem", height: "3rem", color: "#667eea" }}
             role="status"
           >
             <span className="visually-hidden">Loading admin dashboard...</span>
           </div>
-          <p className="mt-3" style={{ color: "#0f766e" }}>
+          <p className="mt-3" style={{ color: "#764ba2" }}>
             Loading admin dashboard...
           </p>
         </div>
@@ -448,7 +448,7 @@ export default function AdminDashboard() {
     <div className="container-fluid admin-dashboard py-3 py-md-5 px-2 px-md-3">
       <div
         style={{
-          background: "linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)",
+          background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
           borderRadius: "18px",
         }}
        className="text-white rounded-4 admin-header p-3 p-md-4 mb-3 shadow-sm"
@@ -457,7 +457,7 @@ export default function AdminDashboard() {
           <div className="col-md-8">
             <div className="d-flex align-items-center mb-3">
               <div className="bg-white rounded-circle p-3 me-3 admin-header-icon">
-                <FaShieldAlt size={30} style={{ color: "#2563eb" }} />
+                <FaShieldAlt size={30} style={{ color: "#667eea" }} />
               </div>
               <div>
                 <h1 className="h3 fw-bold mb-1">Admin Dashboard</h1>
@@ -482,7 +482,7 @@ export default function AdminDashboard() {
                   dispatch(fetchAdminItems());
                   loadAdminUsers(true);
                 }}
-                style={{ color: "#2563eb" }}
+                style={{ color: "#667eea" }}
               >
                 <FaSync className="me-2" />
                 Refresh All
@@ -500,13 +500,13 @@ export default function AdminDashboard() {
             style={{
               background:
                 managementSection === "items"
-                  ? "linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)"
+                  ? "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
                   : "transparent",
-              color: managementSection === "items" ? "white" : "#2563eb",
+              color: managementSection === "items" ? "white" : "#667eea",
               border:
                 managementSection === "items"
                   ? "2px solid transparent"
-                  : "2px solid #2563eb",
+                  : "2px solid #667eea",
             }}
           >
             <FaBoxOpen className="me-2" />
@@ -518,13 +518,13 @@ export default function AdminDashboard() {
             style={{
               background:
                 managementSection === "users"
-                  ? "linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)"
+                  ? "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
                   : "transparent",
-              color: managementSection === "users" ? "white" : "#2563eb",
+              color: managementSection === "users" ? "white" : "#667eea",
               border:
                 managementSection === "users"
                   ? "2px solid transparent"
-                  : "2px solid #2563eb",
+                  : "2px solid #667eea",
             }}
           >
             <FaUsers className="me-2" />
@@ -543,10 +543,10 @@ export default function AdminDashboard() {
                   style={{ color: "#ef4444" }}
                   className="mb-3"
                 />
-                <h3 className="h4 fw-bold mb-2" style={{ color: "#2563eb" }}>
+                <h3 className="h4 fw-bold mb-2" style={{ color: "#667eea" }}>
                   Error Loading Items
                 </h3>
-                <p className="mb-4" style={{ color: "#0f766e" }}>
+                <p className="mb-4" style={{ color: "#764ba2" }}>
                   {error || "An error occurred"}
                 </p>
                 <button
@@ -554,7 +554,7 @@ export default function AdminDashboard() {
                   onClick={() => dispatch(fetchAdminItems())}
                   style={{
                     background:
-                      "linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)",
+                      "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
                   }}
                 >
                   <FaSync className="me-2" />
@@ -569,14 +569,14 @@ export default function AdminDashboard() {
                   {
                     title: "Total Items",
                     value: itemStats.total,
-                    color: "#2563eb",
+                    color: "#667eea",
                     icon: <FaBoxOpen />,
                     bg: "rgba(37, 99, 235, 0.1)",
                   },
                   {
                     title: "Lost Items",
                     value: itemStats.lost,
-                    color: "#2563eb",
+                    color: "#667eea",
                     icon: <FaExclamationTriangle />,
                     bg: "rgba(37, 99, 235, 0.1)",
                   },
@@ -597,14 +597,14 @@ export default function AdminDashboard() {
                   {
                     title: "Active",
                     value: itemStats.active,
-                    color: "#2563eb",
+                    color: "#667eea",
                     icon: <FaBell />,
                     bg: "rgba(37, 99, 235, 0.1)",
                   },
                   {
                     title: "This Week",
                     value: itemStats.recent,
-                    color: "#0f766e",
+                    color: "#764ba2",
                     icon: <FaHistory />,
                     bg: "rgba(20, 184, 166, 0.1)",
                   },
@@ -634,7 +634,7 @@ export default function AdminDashboard() {
                   <div className="col-md-6">
                     <div className="input-group">
                       <span className="input-group-text bg-white border-end-0">
-                        <FaSearch style={{ color: "#2563eb" }} />
+                        <FaSearch style={{ color: "#667eea" }} />
                       </span>
                       <input
                         type="text"
@@ -684,13 +684,13 @@ export default function AdminDashboard() {
                       style={{
                         background:
                           activeTab === tab
-                            ? "linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)"
+                            ? "linear-gradient(135deg, #667eea 0%, #764ba2 100%)"
                             : "transparent",
-                        color: activeTab === tab ? "white" : "#2563eb",
+                        color: activeTab === tab ? "white" : "#667eea",
                         border:
                           activeTab === tab
                             ? "2px solid transparent"
-                            : "2px solid #2563eb",
+                            : "2px solid #667eea",
                       }}
                     >
                       {tab === "all"
@@ -705,13 +705,13 @@ export default function AdminDashboard() {
                 <div className="text-center py-5 my-4">
                   <FaBoxOpen
                     size={80}
-                    style={{ color: "#2563eb", opacity: 0.5 }}
+                    style={{ color: "#667eea", opacity: 0.5 }}
                     className="mb-3"
                   />
-                  <h3 className="h4 fw-bold mb-2" style={{ color: "#2563eb" }}>
+                  <h3 className="h4 fw-bold mb-2" style={{ color: "#667eea" }}>
                     No items found
                   </h3>
-                  <p className="mb-4" style={{ color: "#0f766e" }}>
+                  <p className="mb-4" style={{ color: "#764ba2" }}>
                     {searchQuery || activeTab !== "all"
                       ? "Try adjusting your filters or search"
                       : "No items have been reported yet"}
@@ -754,7 +754,7 @@ export default function AdminDashboard() {
                           <div className="card-body d-flex flex-column p-3 admin-item-content">
                             <h5
                               className="fw-semibold fs-6 mb-1"
-                              style={{ color: "#2563eb" }}
+                              style={{ color: "#667eea" }}
                             >
                               {item.title}
                             </h5>
@@ -778,7 +778,7 @@ export default function AdminDashboard() {
                                     width: "30px",
                                     height: "30px",
                                     background:
-                                      "linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)",
+                                      "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
                                     color: "white",
                                     fontWeight: "600",
                                     fontSize: "14px",
@@ -789,7 +789,7 @@ export default function AdminDashboard() {
                                 <div>
                                   <div
                                     style={{
-                                      color: "#2563eb",
+                                      color: "#667eea",
                                       fontWeight: "500",
                                     }}
                                   >
@@ -806,7 +806,7 @@ export default function AdminDashboard() {
                                   <FaMapMarkerAlt
                                     className="me-1"
                                     size={12}
-                                    style={{ color: "#2563eb" }}
+                                    style={{ color: "#667eea" }}
                                   />
                                   <span
                                     className="text-truncate"
@@ -819,7 +819,7 @@ export default function AdminDashboard() {
                                   <FaCalendarAlt
                                     className="me-1"
                                     size={12}
-                                    style={{ color: "#2563eb" }}
+                                    style={{ color: "#667eea" }}
                                   />
                                   <span>
                                     {new Date(
@@ -838,7 +838,7 @@ export default function AdminDashboard() {
                                 className="badge"
                                 style={{
                                   background: "rgba(37, 99, 235, 0.1)",
-                                  color: "#2563eb",
+                                  color: "#667eea",
                                   textTransform: "capitalize",
                                 }}
                               >
@@ -903,7 +903,7 @@ export default function AdminDashboard() {
                                     width: "36px",
                                     height: "36px",
                                     background:
-                                      "linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)",
+                                      "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
                                     color: "white",
                                     border: "none",
                                     borderRadius: "8px",
@@ -935,10 +935,10 @@ export default function AdminDashboard() {
                   style={{ color: "#ef4444" }}
                   className="mb-3"
                 />
-                <h3 className="h4 fw-bold mb-2" style={{ color: "#2563eb" }}>
+                <h3 className="h4 fw-bold mb-2" style={{ color: "#667eea" }}>
                   Error Loading Users
                 </h3>
-                <p className="mb-4" style={{ color: "#0f766e" }}>
+                <p className="mb-4" style={{ color: "#764ba2" }}>
                   {usersError || "An error occurred"}
                 </p>
                 <button
@@ -946,7 +946,7 @@ export default function AdminDashboard() {
                   onClick={() => loadAdminUsers(true)}
                   style={{
                     background:
-                      "linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)",
+                      "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
                   }}
                 >
                   <FaSync className="me-2" />
@@ -961,7 +961,7 @@ export default function AdminDashboard() {
                   {
                     title: "Total Users",
                     value: userStats.total,
-                    color: "#2563eb",
+                    color: "#667eea",
                     icon: <FaUsers />,
                     bg: "rgba(37, 99, 235, 0.1)",
                   },
@@ -975,7 +975,7 @@ export default function AdminDashboard() {
                   {
                     title: "Members",
                     value: userStats.members,
-                    color: "#2563eb",
+                    color: "#667eea",
                     icon: <FaUsers />,
                     bg: "rgba(37, 99, 235, 0.1)",
                   },
@@ -989,7 +989,7 @@ export default function AdminDashboard() {
                   {
                     title: "New This Week",
                     value: userStats.recent,
-                    color: "#0f766e",
+                    color: "#764ba2",
                     icon: <FaHistory />,
                     bg: "rgba(20, 184, 166, 0.1)",
                   },
@@ -1026,7 +1026,7 @@ export default function AdminDashboard() {
                   <div className="col-md-6">
                     <div className="input-group">
                       <span className="input-group-text bg-white border-end-0">
-                        <FaSearch style={{ color: "#2563eb" }} />
+                        <FaSearch style={{ color: "#667eea" }} />
                       </span>
                       <input
                         type="text"
@@ -1070,13 +1070,13 @@ export default function AdminDashboard() {
                 <div className="text-center py-5 my-4">
                   <FaUsers
                     size={80}
-                    style={{ color: "#2563eb", opacity: 0.5 }}
+                    style={{ color: "#667eea", opacity: 0.5 }}
                     className="mb-3"
                   />
-                  <h3 className="h4 fw-bold mb-2" style={{ color: "#2563eb" }}>
+                  <h3 className="h4 fw-bold mb-2" style={{ color: "#667eea" }}>
                     No users found
                   </h3>
-                  <p className="mb-4" style={{ color: "#0f766e" }}>
+                  <p className="mb-4" style={{ color: "#764ba2" }}>
                     Try adjusting your search or role filter.
                   </p>
                 </div>
@@ -1098,7 +1098,7 @@ export default function AdminDashboard() {
                                     width: "42px",
                                     height: "42px",
                                     background:
-                                      "linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)",
+                                      "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
                                     color: "white",
                                     fontWeight: "700",
                                     fontSize: "18px",
@@ -1109,7 +1109,7 @@ export default function AdminDashboard() {
                                 <div>
                                   <h5
                                     className="mb-1 fw-bold"
-                                    style={{ color: "#2563eb" }}
+                                    style={{ color: "#667eea" }}
                                   >
                                     {account.name}
                                   </h5>
@@ -1141,7 +1141,7 @@ export default function AdminDashboard() {
                               <div className="d-flex align-items-center mb-2">
                                 <FaEnvelope
                                   className="me-2"
-                                  style={{ color: "#2563eb" }}
+                                  style={{ color: "#667eea" }}
                                 />
                                 <span className="text-truncate">
                                   {account.email}
@@ -1150,14 +1150,14 @@ export default function AdminDashboard() {
                               <div className="d-flex align-items-center mb-2">
                                 <FaPhone
                                   className="me-2"
-                                  style={{ color: "#2563eb" }}
+                                  style={{ color: "#667eea" }}
                                 />
                                 <span>{account.phone || "No phone number"}</span>
                               </div>
                               <div className="d-flex align-items-center">
                                 <FaMapPin
                                   className="me-2"
-                                  style={{ color: "#2563eb" }}
+                                  style={{ color: "#667eea" }}
                                 />
                                 <span>{account.location || "No location added"}</span>
                               </div>
@@ -1176,7 +1176,7 @@ export default function AdminDashboard() {
                                   </div>
                                   <div
                                     className="fw-bold"
-                                    style={{ color: "#2563eb" }}
+                                    style={{ color: "#667eea" }}
                                   >
                                     {account.totalItems || 0}
                                   </div>
@@ -1222,7 +1222,7 @@ export default function AdminDashboard() {
                                 }
                                 style={{
                                   background:
-                                    "linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)",
+                                    "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
                                   color: "white",
                                   border: "none",
                                 }}
@@ -1319,10 +1319,10 @@ export default function AdminDashboard() {
                   style={{ maxHeight: "160px" }}
                 />
               </div>
-              <h6 style={{ color: "#2563eb" }} className="fw-bold mb-2 admin-report-modal-title">
+              <h6 style={{ color: "#667eea" }} className="fw-bold mb-2 admin-report-modal-title">
                 {selectedItem.title}
               </h6>
-              <p style={{ color: "#0f766e" }} className="mb-3 admin-report-modal-description">
+              <p style={{ color: "#764ba2" }} className="mb-3 admin-report-modal-description">
                 {selectedItem.description}
               </p>
 
@@ -1341,25 +1341,25 @@ export default function AdminDashboard() {
                 </div>
                 <div className="col-6 admin-report-detail-tile">
                   <small className="text-muted d-block">Category</small>
-                  <span style={{ color: "#0f766e" }}>
+                  <span style={{ color: "#764ba2" }}>
                     {selectedItem.category || "Uncategorized"}
                   </span>
                 </div>
                 <div className="col-12 admin-report-detail-tile">
                   <small className="text-muted d-block">Location</small>
-                  <span style={{ color: "#0f766e" }}>
+                  <span style={{ color: "#764ba2" }}>
                     {selectedItem.location || "Unknown"}
                   </span>
                 </div>
                 <div className="col-6 admin-report-detail-tile">
                   <small className="text-muted d-block">Reported By</small>
-                  <span style={{ color: "#2563eb" }}>
+                  <span style={{ color: "#667eea" }}>
                     {selectedItem.user?.name || "Anonymous"}
                   </span>
                 </div>
                 <div className="col-6 admin-report-detail-tile">
                   <small className="text-muted d-block">Date</small>
-                  <span style={{ color: "#0f766e" }}>
+                  <span style={{ color: "#764ba2" }}>
                     {new Date(
                       selectedItem.createdAt || selectedItem.date
                     ).toLocaleDateString()}
@@ -1406,7 +1406,7 @@ export default function AdminDashboard() {
             <div
               className="text-white rounded-top-3 p-4"
               style={{
-                background: "linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)",
+                background: "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
               }}
             >
               <div className="d-flex justify-content-between align-items-center">
@@ -1430,7 +1430,7 @@ export default function AdminDashboard() {
                     width: "64px",
                     height: "64px",
                     background:
-                      "linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)",
+                      "linear-gradient(135deg, #667eea 0%, #764ba2 100%)",
                     color: "white",
                     fontWeight: "700",
                     fontSize: "22px",
@@ -1439,7 +1439,7 @@ export default function AdminDashboard() {
                   {selectedUser.name?.charAt(0) || "U"}
                 </div>
                 <div>
-                  <h4 className="fw-bold mb-1" style={{ color: "#2563eb" }}>
+                  <h4 className="fw-bold mb-1" style={{ color: "#667eea" }}>
                     {selectedUser.name}
                   </h4>
                   <span
@@ -1457,29 +1457,29 @@ export default function AdminDashboard() {
               <div className="row g-3">
                 <div className="col-md-6">
                   <small className="text-muted d-block">Email</small>
-                  <span style={{ color: "#0f766e" }}>{selectedUser.email}</span>
+                  <span style={{ color: "#764ba2" }}>{selectedUser.email}</span>
                 </div>
                 <div className="col-md-6">
                   <small className="text-muted d-block">Phone</small>
-                  <span style={{ color: "#0f766e" }}>
+                  <span style={{ color: "#764ba2" }}>
                     {selectedUser.phone || "No phone number"}
                   </span>
                 </div>
                 <div className="col-md-6">
                   <small className="text-muted d-block">Location</small>
-                  <span style={{ color: "#0f766e" }}>
+                  <span style={{ color: "#764ba2" }}>
                     {selectedUser.location || "No location added"}
                   </span>
                 </div>
                 <div className="col-md-6">
                   <small className="text-muted d-block">Joined On</small>
-                  <span style={{ color: "#0f766e" }}>
+                  <span style={{ color: "#764ba2" }}>
                     {new Date(selectedUser.createdAt).toLocaleDateString()}
                   </span>
                 </div>
                 <div className="col-12">
                   <small className="text-muted d-block">Bio</small>
-                  <span style={{ color: "#0f766e" }}>
+                  <span style={{ color: "#764ba2" }}>
                     {selectedUser.bio || "No bio added"}
                   </span>
                 </div>
@@ -1492,7 +1492,7 @@ export default function AdminDashboard() {
                     style={{ background: "rgba(37, 99, 235, 0.08)" }}
                   >
                     <div className="small text-muted mb-1">Total Reports</div>
-                    <div className="fw-bold" style={{ color: "#2563eb" }}>
+                    <div className="fw-bold" style={{ color: "#667eea" }}>
                       {selectedUser.totalItems || 0}
                     </div>
                   </div>
@@ -1514,6 +1514,7 @@ export default function AdminDashboard() {
             <div className="p-4 border-top">
               <button
                 type="button"
+                style={{ color: "#764ba2" }}
                 className="btn btn-secondary w-100"
                 onClick={closeUserModal}
               >
@@ -1571,9 +1572,9 @@ export default function AdminDashboard() {
                 style={{ color: "#ef4444" }}
                 className="mb-3 admin-confirm-icon"
               />
-              <p style={{ color: "#0f766e" }}>
+              <p style={{ color: "#764ba2" }}>
                 Are you sure you want to delete{" "}
-                <strong style={{ color: "#2563eb" }}>{deleteConfirm.title}</strong>
+                <strong style={{ color: "#667eea" }}>{deleteConfirm.title}</strong>
                 ?
               </p>
               <p className="small text-muted mb-0">
@@ -1661,9 +1662,9 @@ export default function AdminDashboard() {
                 style={{ color: "#ef4444" }}
                 className="mb-3 admin-confirm-icon"
               />
-              <p style={{ color: "#0f766e" }}>
+              <p style={{ color: "#764ba2" }}>
                 Delete{" "}
-                <strong style={{ color: "#2563eb" }}>
+                <strong style={{ color: "#667eea" }}>
                   {deleteUserConfirm.name}
                 </strong>
                 &rsquo;s account?

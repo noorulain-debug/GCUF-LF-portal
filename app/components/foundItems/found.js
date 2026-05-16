@@ -196,12 +196,12 @@ export default function FoundItemForm() {
         }
         
         .input-focus-effect:focus {
-          border-color: #2563eb;
+          border-color: #667eea;
           box-shadow: 0 0 0 0.25rem rgba(37, 99, 235, 0.15);
         }
         
         .submit-btn {
-          background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
+          background: linear-gradient(135deg, #667eea 0%, #764ba2  100%);
           border: none;
           transition: all 0.3s ease;
           color: white;
@@ -223,7 +223,7 @@ export default function FoundItemForm() {
         
         .image-upload-area:hover {
           background: rgba(37, 99, 235, 0.08);
-          border-color: #2563eb;
+          border-color: #667eea;
         }
         
         .card-hover-3d {
@@ -252,18 +252,18 @@ export default function FoundItemForm() {
         }
         
         .found-header {
-          background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
+          background: linear-gradient(135deg, #667eea 0%, #764ba2  100%);
         }
         
         .icon-gradient {
-          background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
+          background: linear-gradient(135deg, #667eea 0%, #764ba2  100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
         }
         
         .text-gradient {
-          background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
+          background: linear-gradient(135deg, #667eea 0%, #764ba2  100%);
           -webkit-background-clip: text;
           -webkit-text-fill-color: transparent;
           background-clip: text;
@@ -271,13 +271,13 @@ export default function FoundItemForm() {
         
         .btn-outline-gradient {
           border: 2px solid;
-          border-image: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
+          border-image: linear-gradient(135deg, #667eea 0%, #764ba2  100%);
           border-image-slice: 1;
-          color: #2563eb;
+          color: #667eea;
         }
         
         .btn-outline-gradient:hover {
-          background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
+          background: linear-gradient(135deg, #667eea 0%, #764ba2  100%);
           color: white;
         }
         
@@ -535,7 +535,7 @@ export default function FoundItemForm() {
         }
         
         .form-control:focus, .form-select:focus {
-          border-color: #2563eb;
+          border-color: #667eea;
           box-shadow: 0 0 0 0.25rem rgba(37, 99, 235, 0.15);
         }
         
@@ -560,7 +560,7 @@ export default function FoundItemForm() {
               <div className="card shadow-sm border-0 mb-4 stat-card">
                 <div className="card-body p-4">
                   <div className="d-flex align-items-center">
-                    <div className="rounded-circle p-2 me-3" style={{ background: 'linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)' }}>
+                    <div className="rounded-circle p-2 me-3" style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2  100%)' }}>
                       <FaUser size={20} className="text-white" />
                     </div>
                     <div>
@@ -605,7 +605,7 @@ export default function FoundItemForm() {
                 
                   <div className="mb-4">
                     <label htmlFor="title" className="form-label d-flex align-items-center mb-2">
-                      <FaTag className="me-2" style={{ color: '#2563eb' }} />
+                      <FaTag className="me-2" style={{ color: '#667eea' }} />
                       Item Title <span className="text-danger ms-1">*</span>
                     </label>
                     <input
@@ -627,7 +627,7 @@ export default function FoundItemForm() {
                
                   <div className="mb-4">
                     <label htmlFor="description" className="form-label d-flex align-items-center mb-2">
-                      <FaInfoCircle className="me-2" style={{ color: '#2563eb' }} />
+                      <FaInfoCircle className="me-2" style={{ color: '#667eea' }} />
                       Description <span className="text-danger ms-1">*</span>
                     </label>
                     <textarea
@@ -651,7 +651,7 @@ export default function FoundItemForm() {
                 
                     <div className="col-md-6">
                       <label htmlFor="category" className="form-label d-flex align-items-center mb-2">
-                        <FaTag className="me-2" style={{ color: '#2563eb' }} />
+                        <FaTag className="me-2" style={{ color: '#667eea' }} />
                         Category <span className="text-danger ms-1">*</span>
                       </label>
                       <select
@@ -682,7 +682,7 @@ export default function FoundItemForm() {
                    
                     <div className="col-md-6">
                       <label htmlFor="location" className="form-label d-flex align-items-center mb-2">
-                        <FaMapMarkerAlt className="me-2" style={{ color: '#2563eb' }} />
+                        <FaMapMarkerAlt className="me-2" style={{ color: '#667eea' }} />
                         Found Location <span className="text-danger ms-1">*</span>
                       </label>
                       <input
@@ -706,7 +706,7 @@ export default function FoundItemForm() {
                 
                   <div className="mb-4">
                     <label className="form-label d-flex align-items-center mb-2">
-                      <FaCamera className="me-2" style={{ color: '#2563eb' }} />
+                      <FaCamera className="me-2" style={{ color: '#667eea' }} />
                       Item Photo (Optional)
                     </label>
                     
@@ -733,7 +733,7 @@ export default function FoundItemForm() {
                         className="image-upload-area text-center p-3 mb-2 rounded-3"
                         onClick={() => fileInputRef.current?.click()}
                       >
-                        <FaUpload size={20} className="mb-2" style={{ color: '#2563eb' }} />
+                        <FaUpload size={20} className="mb-2" style={{ color: '#667eea' }} />
                         <p className="image-upload-title mb-1 fw-semibold">Tap to upload photo</p>
                         <p className="image-upload-hint text-muted mb-0">PNG, JPG up to 5MB</p>
                       </div>

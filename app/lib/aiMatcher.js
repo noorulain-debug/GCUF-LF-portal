@@ -4,7 +4,7 @@ import { sendMatchEmail } from "@/app/lib/sendEmail";
 
 const DEFAULT_MODEL = "Xenova/all-MiniLM-L6-v2";
 const DEFAULT_HF_API_MODEL = "sentence-transformers/all-MiniLM-L6-v2";
-const DEFAULT_THRESHOLD = 0.5;
+const DEFAULT_THRESHOLD = 0.7;
 const STOP_WORDS = new Set([
   "a",
   "an",
@@ -29,6 +29,9 @@ const STOP_WORDS = new Set([
   "this",
   "to",
   "with",
+  "thing",
+  "stuff",
+  "object",
 ]);
 
 let extractorPromise;
@@ -297,31 +300,47 @@ async function ensureEmbedding(item) {
 }
 
 function calculateWeightedScore(lostItem, foundItem) {
-  const embeddingScore = cosineSimilarity(lostItem.embedding, foundItem.embedding);
+  const embeddingScore = cosineSimilarity(
+    lostItem.embedding,
+    foundItem.embedding
+  );
+
   let textScore = 0;
 
   if (
     normalizeText(lostItem.category) &&
-    normalizeText(lostItem.category) === normalizeText(foundItem.category)
+    normalizeText(lostItem.category) ===
+      normalizeText(foundItem.category)
   ) {
-    textScore += 0.25;
+    textScore += 0.3;
   }
 
-  textScore += Math.max(
+  const titleScore = Math.max(
     textIncludesScore(lostItem.title, foundItem.title),
     tokenOverlapScore(lostItem.title, foundItem.title)
-  ) * 0.35;
-  textScore += tokenOverlapScore(lostItem.description, foundItem.description) * 0.2;
-  textScore += Math.max(
-    textIncludesScore(lostItem.location, foundItem.location),
-    tokenOverlapScore(lostItem.location, foundItem.location)
-  ) * 0.15;
-  textScore += tokenOverlapScore(
-    `${lostItem.title} ${lostItem.description}`,
-    `${foundItem.title} ${foundItem.description}`
-  ) * 0.05;
+  );
 
-  return Math.min(Math.max(embeddingScore, textScore), 1);
+  textScore += titleScore * 0.4;
+
+  textScore +=
+    tokenOverlapScore(
+      lostItem.description,
+      foundItem.description
+    ) * 0.2;
+
+  textScore += Math.max(
+    textIncludesScore(
+      lostItem.location,
+      foundItem.location
+    ),
+    tokenOverlapScore(
+      lostItem.location,
+      foundItem.location
+    )
+  ) * 0.1;
+
+  // combine both scores
+  return (embeddingScore * 0.5) + (textScore * 0.5);
 }
 
 async function notifyLostUser(lostItem, foundItem, score) {
@@ -371,6 +390,14 @@ export async function findAndNotifyMatches(newItem) {
       );
 
       if (isMatch) {
+        const titleOverlap = tokenOverlapScore(
+        lostItem.title,
+        foundItem.title
+      );
+
+       if (titleOverlap < 0.2) {
+       continue;
+     }
         matches.push({
           lostItemId: lostItem._id,
           foundItemId: foundItem._id,

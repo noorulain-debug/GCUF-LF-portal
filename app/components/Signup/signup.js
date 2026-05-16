@@ -124,7 +124,7 @@ export default function ProfessionalRegister() {
     <>
       <style jsx global>{`
         .login-gradient-bg {
-          background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
           min-height: 100vh;
           position: relative;
           overflow: hidden;
@@ -170,7 +170,7 @@ export default function ProfessionalRegister() {
         }
         
         .login-input:focus {
-          border-color: #2563eb;
+          border-color: #667eea;
           box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
           outline: none;
         }
@@ -178,11 +178,11 @@ export default function ProfessionalRegister() {
         .login-input-icon {
           border: 2px solid rgba(37, 99, 235, 0.1);
           background: rgba(255, 255, 255, 0.9);
-          color: #2563eb;
+          color: #667eea;
         }
         
         .login-btn {
-          background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
           border: none;
           border-radius: 12px;
           padding: 10px;
@@ -202,21 +202,21 @@ export default function ProfessionalRegister() {
         }
         
         .form-check-input:checked {
-          background-color: #2563eb;
-          border-color: #2563eb;
+          background-color: #667eea;
+          border-color: #667eea;
         }
         
         .form-check-input:focus {
-          border-color: #2563eb;
+          border-color: #667eea;
           box-shadow: 0 0 0 0.25rem rgba(37, 99, 235, 0.25);
         }
         
         .text-primary {
-          color: #2563eb !important;
+          color: #667eea !important;
         }
         
         .text-secondary {
-          color: #0f766e !important;
+          color: #764ba2 !important;
         }
         
         .fade-in {
@@ -236,12 +236,12 @@ export default function ProfessionalRegister() {
         .password-toggle-btn {
           background: rgba(255, 255, 255, 0.9) !important;
           border: 2px solid rgba(37, 99, 235, 0.1) !important;
-          color: #2563eb !important;
+          color: #667eea !important;
         }
         
         .password-toggle-btn:hover {
           background: rgba(37, 99, 235, 0.05) !important;
-          border-color: #2563eb !important;
+          border-color: #667eea !important;
         }
       `}</style>
 
@@ -256,7 +256,7 @@ export default function ProfessionalRegister() {
               <div className="login-card p-2 p-md-5 fade-in" style={{ animationDelay: '0.1s' }}>
                 <form onSubmit={register}>
                   <div className="mb-3">
-                    <label htmlFor="name" className="form-label fw-medium d-flex align-items-center" style={{ color: '#2563eb' }}>
+                    <label htmlFor="name" className="form-label fw-medium d-flex align-items-center" style={{ color: '#667eea' }}>
                       <FaUser className="me-2" size={14} />
                       Full Name
                     </label>
@@ -288,7 +288,7 @@ export default function ProfessionalRegister() {
                   </div>
 
                   <div className="mb-3">
-                    <label htmlFor="email" className="form-label fw-medium d-flex align-items-center" style={{ color: '#2563eb' }}>
+                    <label htmlFor="email" className="form-label fw-medium d-flex align-items-center" style={{ color: '#667eea' }}>
                       <FaEnvelope className="me-2" size={14} />
                       Email Address
                     </label>
@@ -323,7 +323,7 @@ export default function ProfessionalRegister() {
                     <label
                       htmlFor="phone"
                       className="form-label fw-medium d-flex align-items-center"
-                      style={{ color: "#2563eb" }}
+                      style={{ color: "#667eea" }}
                     >
                       <FaUser className="me-2" size={14} />
                       Phone Number
@@ -364,7 +364,7 @@ export default function ProfessionalRegister() {
 
 
                   <div className="mb-3">
-                    <label htmlFor="password" className="form-label fw-medium d-flex align-items-center" style={{ color: '#2563eb' }}>
+                    <label htmlFor="password" className="form-label fw-medium d-flex align-items-center" style={{ color: '#667eea' }}>
                       <FaLock className="me-2" size={14} />
                       Password
                     </label>
@@ -403,7 +403,7 @@ export default function ProfessionalRegister() {
                   </div>
 
                   <div className="mb-3">
-                    <label htmlFor="confirmPassword" className="form-label fw-medium d-flex align-items-center" style={{ color: '#2563eb' }}>
+                    <label htmlFor="confirmPassword" className="form-label fw-medium d-flex align-items-center" style={{ color: '#667eea' }}>
                       <FaLock className="me-2" size={14} />
                       Confirm Password
                     </label>
@@ -453,13 +453,13 @@ export default function ProfessionalRegister() {
                           if (errors.terms) setErrors({ ...errors, terms: "" });
                         }}
                       />
-                      <label className="form-check-label" htmlFor="terms" style={{ color: '#0f766e', fontSize: '0.8rem' }}>
+                      <label className="form-check-label" htmlFor="terms" style={{ color: '#764ba2', fontSize: '0.8rem' }}>
                         I agree to the{" "}
-                        <a href="/terms" className="text-decoration-none" style={{ color: '#2563eb' }}>
+                        <a href="/terms" className="text-decoration-none" style={{ color: '#667eea' }}>
                           Terms and Conditions
                         </a>
                         {" "}and{" "}
-                        <a href="/privacy" className="text-decoration-none" style={{ color: '#2563eb' }}>
+                        <a href="/privacy" className="text-decoration-none" style={{ color: '#667eea' }}>
                           Privacy Policy
                         </a>
                       </label>
@@ -487,9 +487,9 @@ export default function ProfessionalRegister() {
                   </button>
 
                   <div className="text-center mt-4">
-                    <p className="mb-2" style={{ color: '#0f766e' }}>
+                    <p className="mb-2" style={{ color: '#764ba2' }}>
                       Already have an account?{" "}
-                      <a href="/loginPage" className="fw-bold text-decoration-none" style={{ color: '#2563eb' }}>
+                      <a href="/loginPage" className="fw-bold text-decoration-none" style={{ color: '#667eea' }}>
                         Sign In
                       </a>
                     </p>

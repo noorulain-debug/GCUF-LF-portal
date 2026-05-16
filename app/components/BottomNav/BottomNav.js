@@ -80,7 +80,7 @@ export default function BottomNav() {
         }
 
         .nav-item-bottom.active {
-          color: #2563eb;
+          color: #667eea;
         }
 
         .nav-item-bottom.active::after {
@@ -91,7 +91,7 @@ export default function BottomNav() {
           transform: translateX(-50%);
           width: 20px;
           height: 2px;
-          background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
           border-radius: 2px 2px 0 0;
         }
 
@@ -113,7 +113,7 @@ export default function BottomNav() {
 
         .add-button {
           position: relative;
-          background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
           color: white !important;
           border-radius: 50%;
           width: 44px;
@@ -174,7 +174,7 @@ export default function BottomNav() {
         .add-menu-item:hover,
         .add-menu-item:active {
           background: rgba(37, 99, 235, 0.08);
-          color: #2563eb;
+          color: #667eea;
         }
 
         .add-menu-item .menu-icon {

@@ -69,7 +69,7 @@ export default function Home() {
         }
         
         .hero-gradient {
-          background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
           position: relative;
           overflow: hidden;
         }
@@ -112,7 +112,7 @@ export default function Home() {
         }
 
         .stat-total {
-          color: #2563eb;
+          color: #667eea;
           font-size: clamp(1.75rem, 9vw, 4rem);
           line-height: 1;
           font-weight: 700;
@@ -121,7 +121,7 @@ export default function Home() {
         }
 
         .stat-title {
-          color: #2563eb;
+          color: #667eea;
           font-size: clamp(0.85rem, 3.8vw, 1.25rem);
           line-height: 1.2;
           font-weight: 700;
@@ -148,7 +148,7 @@ export default function Home() {
         }
 
         .stat-number {
-          color: #2563eb;
+          color: #667eea;
           font-size: clamp(1.1rem, 5.8vw, 2rem);
           line-height: 1;
           font-weight: 700;
@@ -191,7 +191,7 @@ export default function Home() {
           }
 
           .stat-footer-status {
-          color: #2563eb;
+          color: #667eea;
           display: inline-flex;
           align-items: center;
           justify-content: center;
@@ -230,7 +230,7 @@ export default function Home() {
         .category-btn:hover {
         transform: translateY(-5px);
         box-shadow: 0 15px 30px rgba(37, 99, 235, 0.15);
-        border-color: #2563eb;
+        border-color: #667eea;
         }
         
         .floating {
@@ -272,7 +272,7 @@ export default function Home() {
         }
         
         .btn-website-gradient {
-          background: linear-gradient(135deg, #2563eb 0%, #14b8a6 100%);
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
           border: none;
           color: white;
           transition: all 0.3s ease;
@@ -308,7 +308,7 @@ export default function Home() {
         }
         
         .category-icon {
-          color: #2563eb;
+          color: #667eea;
           margin-bottom: 12px;
         }
         
@@ -540,7 +540,7 @@ export default function Home() {
                     <Link
                       href="/lost"
                       className="btn btn-light btn-sm px-3 py-2 fw-bold rounded-pill btn-hover-grow shadow"
-                      style={{ color: "#2563eb", fontSize: '0.75rem' }}
+                      style={{ color: "#667eea", fontSize: '0.75rem' }}
                     >
                       <FaBullhorn className="me-1" size={12} />
                       Report Lost
@@ -634,38 +634,38 @@ export default function Home() {
             <div className="row g-2">
               <div className="col-4 fade-in">
                 <div className="service-card p-2 h-100 text-center">
-                  <div className="rounded-circle p-2 mx-auto mb-2" style={{ background: '#2563eb', color: 'white', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <div className="rounded-circle p-2 mx-auto mb-2" style={{ background: '#667eea', color: 'white', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <FaShieldAlt size={14} />
                   </div>
                   <h3 className="fw-bold mb-0 text-gray-800" style={{ fontSize: '0.7rem' }}>Security</h3>
-                  <div className="fw-bold" style={{ color: '#2563eb', fontSize: '0.6rem' }}>Ext. 911</div>
+                  <div className="fw-bold" style={{ color: '#667eea', fontSize: '0.6rem' }}>Ext. 911</div>
                 </div>
               </div>
 
               <div className="col-4 fade-in" style={{ animationDelay: '0.1s' }}>
                 <div className="service-card p-2 h-100 text-center">
-                  <div className="rounded-circle p-2 mx-auto mb-2" style={{ background: '#2563eb', color: 'white', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <div className="rounded-circle p-2 mx-auto mb-2" style={{ background: '#667eea', color: 'white', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <FaBookOpen size={14} />
                   </div>
                   <h3 className="fw-bold mb-0 text-gray-800" style={{ fontSize: '0.7rem' }}>Common spot</h3>
-                  <div className="fw-bold" style={{ color: '#2563eb', fontSize: '0.6rem' }}>Library</div>
+                  <div className="fw-bold" style={{ color: '#667eea', fontSize: '0.6rem' }}>Library</div>
                 </div>
               </div>
 
               <div className="col-4 fade-in" style={{ animationDelay: '0.2s' }}>
                 <div className="service-card p-2 h-100 text-center">
-                  <div className="rounded-circle p-2 mx-auto mb-2" style={{ background: '#2563eb', color: 'white', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                  <div className="rounded-circle p-2 mx-auto mb-2" style={{ background: '#667eea', color: 'white', width: '36px', height: '36px', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <FaUsers size={14} />
                   </div>
                   <h3 className="fw-bold mb-0 text-gray-800" style={{ fontSize: '0.7rem' }}>Student Affairs</h3>
-                  <div className="fw-bold" style={{ color: '#2563eb', fontSize: '0.6rem' }}>GCUF</div>
+                  <div className="fw-bold" style={{ color: '#667eea', fontSize: '0.6rem' }}>GCUF</div>
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        <section className="py-3" style={{ background: 'linear-gradient(135deg, #2563eb 0%, #14b8a6 100%)', fontSize: '0.75rem' }}>
+        <section className="py-3" style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)', fontSize: '0.75rem' }}>
           <div className="container">
             <div className="text-center py-3 fade-in">
               <h2 className="h5 fw-bold mb-2 text-white">Need to Report Something?</h2>
@@ -676,7 +676,7 @@ export default function Home() {
                 <Link
                   href="/lost"
                   className="btn btn-light btn-sm px-3 py-2 fw-bold rounded-pill btn-hover-grow shadow"
-                  style={{ color: "#2563eb", fontSize: '0.75rem' }}
+                  style={{ color: "#667eea", fontSize: '0.75rem' }}
                 >
                   <FaBullhorn className="me-1" size={12} />
                   Report Lost
