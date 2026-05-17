@@ -44,6 +44,7 @@ export async function sendMatchEmail(toEmail, lostItem, foundItem, score) {
           <h3>Your Lost Item</h3>
           <p><b>Title:</b> ${lostItem.title}</p>
           <p><b>Description:</b> ${lostItem.description}</p>
+           <p><b>Location:</b> ${lostItem.location}</p>
 
           <h3>Found Item</h3>
           <p><b>Title:</b> ${foundItem.title}</p>
@@ -53,7 +54,7 @@ export async function sendMatchEmail(toEmail, lostItem, foundItem, score) {
           <br />
 
           <a 
-            href="http://localhost:3000/browse"
+            href="https://gcuf-lf-portal.vercel.app/"
             style="
               background: #2563eb;
               color: white;

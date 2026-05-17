@@ -197,7 +197,7 @@ export default function LostItemForm() {
         
         .input-focus-effect:focus {
           border-color: #667eea;
-          box-shadow: 0 0 0 0.25rem rgba(37, 99, 235, 0.15);
+          box-shadow: 0 0 0 0.25rem rgba(102, 126, 234, 0.15);
         }
         
         .submit-btn {
@@ -210,19 +210,19 @@ export default function LostItemForm() {
         
         .submit-btn:hover {
           transform: translateY(-2px);
-          box-shadow: 0 10px 20px rgba(37, 99, 235, 0.3);
+          box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
         }
         
         .image-upload-area {
-          border: 2px dashed rgba(37, 99, 235, 0.3);
+          border: 2px dashed rgba(102, 126, 234, 0.3);
           border-radius: 12px;
           transition: all 0.3s ease;
-          background: rgba(37, 99, 235, 0.03);
+          background: rgba(102, 126, 234, 0.03);
           cursor: pointer;
         }
         
         .image-upload-area:hover {
-          background: rgba(37, 99, 235, 0.08);
+          background: rgba(102, 126, 234, 0.08);
           border-color: #667eea;
         }
         
@@ -232,7 +232,7 @@ export default function LostItemForm() {
         
         .card-hover-3d:hover {
           transform: translateY(-5px);
-          box-shadow: 0 20px 40px rgba(37, 99, 235, 0.1) !important;
+          box-shadow: 0 20px 40px rgba(102, 126, 234, 0.1) !important;
         }
         
         .form-gradient {
@@ -241,14 +241,14 @@ export default function LostItemForm() {
         }
         
         .stat-card {
-          background: linear-gradient(135deg, rgba(37, 99, 235, 0.05) 0%, rgba(20, 184, 166, 0.05) 100%);
+          background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
           border-radius: 12px;
-          border: 1px solid rgba(37, 99, 235, 0.1);
+          border: 1px solid rgba(102, 126, 234, 0.1);
           transition: all 0.3s ease;
         }
         
         .stat-card:hover {
-          border-color: rgba(37, 99, 235, 0.3);
+          border-color: rgba(102, 126, 234, 0.3);
         }
         
         .lost-header {
@@ -321,7 +321,7 @@ export default function LostItemForm() {
           overflow: hidden;
           border-radius: 12px;
           background: #f8fafc;
-          border: 2px solid rgba(37, 99, 235, 0.2);
+          border: 2px solid rgba(102, 126, 234, 0.2);
         }
 
         .image-preview img {
@@ -360,7 +360,7 @@ export default function LostItemForm() {
         
         .form-control:focus, .form-select:focus {
           border-color: #667eea;
-          box-shadow: 0 0 0 0.25rem rgba(37, 99, 235, 0.15);
+          box-shadow: 0 0 0 0.25rem rgba(102, 126, 234, 0.15);
         }
         
         .alert-success {
@@ -376,7 +376,7 @@ export default function LostItemForm() {
         }
         
         .lost-icon-bg {
-          background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(20, 184, 166, 0.1) 100%);
+          background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
         }
         
         /* Mobile Responsive Styles - COMPACT */
@@ -837,5 +837,3 @@ export default function LostItemForm() {
     </>
   );
 }
-
-

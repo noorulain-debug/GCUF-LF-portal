@@ -172,7 +172,7 @@ export default function Navbar() {
           }
           
           .navbar-brand img {
-            width: 75px !important;
+            width: 65px !important;
             height: 45px !important;
           }
           
@@ -188,8 +188,8 @@ export default function Navbar() {
           }
           
           .navbar-brand img {
-            width: 75px !important;
-            height: 45px !important;
+            width: 45px !important;
+            height: 30px !important;
           }
           
           .mobile-menu-dropdown {
@@ -321,7 +321,7 @@ export default function Navbar() {
               <img
                 src="/images/L.png"
                 alt="Lost & Found Logo"
-                style={{ width: "130px", height: "84px" }} // smaller for mobile
+                style={{ width: "80px", height: "54px" }} // smaller for mobile
                 className="me-2 logo-glow"
               />
             </div>
