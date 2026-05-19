@@ -3,8 +3,37 @@ __v0_runtime_loader.js
 __v0_devtools.tsx
 __v0_jsx-dev-runtime.ts
 
-# Common ignores
-node_modules
+# Dependencies
+node_modules/
+
+# Next.js
 .next/
+out/
+
+# Build folders
+dist/
+build/
+
+# Environment
 .env*.local
+.env
+
+# OS files
 .DS_Store
+
+# Capacitor / Mobile
+android/
+ios/
+.capacitor/
+
+# Android Studio / Gradle
+.gradle/
+.idea/
+
+# Package manager lock files
+pnpm-lock.yaml
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
